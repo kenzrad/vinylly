@@ -1,8 +1,49 @@
+/*global CSS shizzzz*/
 body {
     background-color: black;
 }
 
-div {
-    border: solid;
-    border-color: red;
+
+/*-----------------------------------*/
+
+/*container that holds record player and album view divs*/
+#record-room {
+    position: relative;
+    width: 500px;
+    height: 350px;
+    border: solid; /*--just for visualizing--*/
+    border-color: grey; /*--just for visualizing--*/
+    background-color: purple; /*--just for visualizing--*/
+}
+
+    /*album and record overlay*/
+    #album-view {
+        position: absolute;
+        top: 25px;;
+        left: 0;
+
+    }
+    #record-img {
+        position: absolute;
+        top: 50px;
+        left: 0px;
+        z-index: 1;
+    }
+
+    #album-img {
+        position: absolute;
+        left: 0;
+        top: 50px;
+        z-index: 2;
+    }
+
+    /*player and needle and all the beautiful things*/
+    #player-container {
+
+    }
+/*-----------------------------------*/
+
+
+#this-album-modal {
+
 }

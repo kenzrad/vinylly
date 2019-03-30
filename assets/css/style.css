@@ -33,7 +33,7 @@ body {
     #album-img {
         position: absolute;
         left: 0;
-        top: 50px;
+        top: 30px;
         z-index: 2;
     }
 

@@ -63,3 +63,30 @@ $("#genre-submit").click(function(event){
 
 //
 
+
+//api call
+searchBandsInTown("kiss")
+function searchBandsInTown(artist) {
+  // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
+  var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+    // Printing the entire object to console
+    console.log(response);
+
+    //making html elemnts to store data about artist
+
+    var bitBandName = $("<h1>").text(response.name);
+    var bitBandImage = $("<img>").attr("src", response.thumb_url);
+    var bitFacebook = $("<a>")
+    bitFacebook.attr("href", response.facebook_page_url).text("Facebook Page")
+    var bitTourSchedule = $("<a>").attr("href", response.url).text("Upcoming events!!")
+    var bitFacebookP = $("<p>").append(bitFacebook)
+    var bitHolder = $("<p>").append(bitTourSchedule)
+    console.log(bitBandImage)
+    $("#band-info").empty()
+    $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder)
+  });
+}

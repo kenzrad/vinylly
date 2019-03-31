@@ -1,8 +1,69 @@
+/*global CSS shizzzz*/
 body {
     background-color: black;
 }
 
-div {
-    border: solid;
-    border-color: red;
+.header {
+    font-size: 60px;
+    padding: 0;
+    font-family: Garamond, Georgia, serif;
+    font-stretch: expanded;
 }
+
+/*-----------------------------------*/
+
+/*container that holds record player and album view divs*/
+#record-room {
+    position: relative;
+    width: 500px;
+    height: 350px;
+    /* border: solid; --just for visualizing-- */
+    /* border-color: grey; --just for visualizing-- */
+    /* background-color: purple; --just for visualizing-- */
+}
+
+    /*album and record overlay*/
+    #album-view {
+        position: absolute;
+        top: 0;
+        left: 0p;
+
+    }
+    #record-img {
+        position: absolute;
+        top: 37.5px;
+        /* left: 112.5px; */
+        left: 76px;
+        z-index: 1;
+    }
+
+    #album-img {
+        display: none;
+        position: absolute;
+        top: 37.5px;
+        left: 112.5px;
+        z-index: 2;
+    }
+
+    /*player and needle and all the beautiful things*/
+    #player-img {
+        position: absolute;
+        top: 25px;
+        left: 50px;
+        z-index: 0;
+    }
+/*-----------------------------------*/
+
+
+#this-album-modal {
+
+}
+
+
+
+
+
+
+
+
+/*-----------------------------------*/

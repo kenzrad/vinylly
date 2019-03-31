@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Vinylly</title>
+    <title>vinylly</title>
 
     <!--USUAL SUSPECTS-->
     <link rel="stylesheet" href="assets/css/reset.css">
@@ -24,26 +24,94 @@
 </head>
 
 <body>
+<header class="header jumbotron text-center">vinylly</header>
 
-    <div id="album-container" class="container text-center my-5 py-3">
-        <img id="album-img" src="blueprints/Rectangle 8.png" class="img">   
-        <div id="record-div" class="collapse">
-            <img id="record-img" src="blueprints/Group 6.png" class="img">  
+<div id="record-room" class="container p-0">
+    <div id="album-view" class="container text-center p-0">
+        <img id="record-img" class="record m-0 p-0" src="assets/images/objects/record.png" alt="record" class="img"> 
+        <img id="album-img" class="album-cover m-0 p-0" src="assets/images/albums/album-placeholder.png" alt="album cover" class="img">
+ 
+    </div>
+
+    <div id="player-container" class="container text-center">
+        <img id="player-img" class="m-0 p-0" src="assets/images/objects/player.png">
+    </div>
+</div>
+
+
+<!--Hide divs responsively based on screen size and have toggle option-->
+<!--Band Bio/Fact Div Placeholder ANNA-->
+<div id="bit-div" class="container"></div>
+
+<!--USER and Name Display-->
+<div id="bit-display-div">
+    <h3 id="name-display"></h3>
+    <h5 id="genre-display"></h5>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bit-modal">Update</button>
+</div>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#album-select-modal">
+        Select Album
+        </button>
+
+
+
+<!--PATRICKS DIV YO YO YO YOYOYOYOYOYOYO-->
+<div>
+
+    
+</div>
+
+
+
+    
+<!--Username and Genre Modal-->
+<div class="modal fade" id="bit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">Welcome to Vinylly!</h4>
+            </div>
+
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <input type="text" id="name-input" class="form-control validate">
+                </div>
+                <div class="md-form mb-4">
+                    <input type="text" id="genre-input" placeholder="Enter a music genre" class="form-control validate">
+                </div>
+            </div>
+            
+            <div class="modal-footer d-flex justify-content-center">
+                <input id="genre-submit" class="btn btn-outline-secondary" type="submit">
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!--Select Album Modal-->
+<div class="modal fade" id="album-select-modal" tabindex="-1" role="dialog" aria-labelledby="album-select-modal-title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="album-select-modal-title">Select an Album!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="albums-div" class="modal-body">
+                Album selection will be dynamically generated here
+            </div>
         </div>
     </div>
+</div>
 
-    <div id="player-container" class="container text-center my-5 py-3">
-        <img src="blueprints/player.png">
-    </div>
 
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" id = "music-genre" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-        <button class="btn btn-outline-secondary" id = "genre-submit" type="submit">Button</button>
-        </div>
-    </div>
 
-      
+
+          
 
 <script src="assets/js/app.js"></script>
 </body>

@@ -24,17 +24,43 @@
 </head>
 
 <body>
-<header class="header jumbotron text-center">vinylly</header>
 
-<div id="record-room" class="container p-0">
-    <div id="album-view" class="container text-center p-0">
-        <img id="record-img" class="record m-0 p-0" src="assets/images/objects/record.png" alt="record" class="img"> 
-        <img id="album-img" class="album-cover m-0 p-0" src="assets/images/albums/album-placeholder.png" alt="album cover" class="img">
- 
-    </div>
+<nav class="navbar navbar-expand-lg navbar-fluid navbar-light bg-light">
+    <a class="navbar-brand header text-center">vinylly</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav nav-links">
+            <li id="music-li" class="nav-item">
+                <a class="nav-link" href="#">Music</a>
+            </li>
+            <li id="merch-li" class="nav-item">
+                <a class="nav-link" href="#">Merch</a>
+            </li>
+            <li id="events-li" class="nav-item">
+                <a class="nav-link" href="#">Events</a>
+            </li>
+        </ul>
+    </div>    
+</nav>
 
-    <div id="player-container" class="container text-center">
-        <img id="player-img" class="m-0 p-0" src="assets/images/objects/player.png">
+
+<div id="record-room" class="container text-center p-0 m-0">
+    <div class="row">
+        <div class="col-md-6 p-0 m-0">
+            <div id="album-view" class="text-center m-0 p-0">
+                <img id="record-img" class="record m-0 p-0" src="assets/images/objects/record.png" alt="record" class="img"> 
+                <img id="album-img" class="album-cover m-0 p-0" src="assets/images/albums/album-placeholder.png" alt="album cover" class="img">
+            </div>
+            <div id="player-container" class="text-center">
+                <img id="player-img" class="m-0 p-0" src="assets/images/objects/player.png">
+            </div>
+        </div>
+        <div class="col-md-6 m-0 p-0">
+            <div id="album-view" class="text-center m-0 p-0">
+            </div>
+        </div>
     </div>
 </div>
 
@@ -43,23 +69,17 @@
 <!--Band Bio/Fact Div Placeholder ANNA-->
 <div id="bit-div" class="container"></div>
 
-<!--USER and Name Display-->
-<div id="bit-display-div">
-    <h3 id="name-display"></h3>
-    <h5 id="genre-display"></h5>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#bit-modal">Update</button>
-</div>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#album-select-modal">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#album-select-modal">
         Select Album
-        </button>
+        </button> -->
 
 
 
 <!--PATRICKS DIV YO YO YO YOYOYOYOYOYOYO-->
 <div>
 
-    
+
 </div>
 
 

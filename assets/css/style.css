@@ -7,8 +7,27 @@ body {
     font-size: 60px;
     padding: 0;
     font-family: Garamond, Georgia, serif;
-    font-stretch: expanded;
+    letter-spacing: 0.4em;
+    cursor: pointer;
 }
+
+.nav-links {
+    font-size: 20px;
+    padding: 0;
+    font-family: Garamond, Georgia, serif;
+    letter-spacing: 0.1em;
+}
+
+/*----------RECORD MOVE---------------*/
+#record-img {
+    border-radius: 50%;
+    -webkit-transition: -webkit-transform 60s ease-in-out;
+            transition:         transform 60s ease-in-out;
+  }
+  #record-img:hover {
+    -webkit-transform: rotate(10800deg);
+            transform: rotate(10800deg);
+  }
 
 /*-----------------------------------*/
 
@@ -31,9 +50,9 @@ body {
     }
     #record-img {
         position: absolute;
-        top: 37.5px;
+        top: 34px;
         /* left: 112.5px; */
-        left: 76px;
+        left: 77px;
         z-index: 1;
     }
 

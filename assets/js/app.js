@@ -36,10 +36,10 @@ var database = firebase.database();
 var userName = "";
 var genre = "";
 
-//Modal control for the name/genre -- may change this later to not be on doc load
-// $(document).ready(function(){
-//     $("#bit-modal").modal("show");
-// });
+// Modal control for the name/genre -- may change this later to not be on doc load
+$(".header").click(function(){
+    $("#bit-modal").modal("show");
+});
 
 //Modal information collection (name / genre)
 $("#genre-submit").click(function(event){

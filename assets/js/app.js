@@ -66,27 +66,41 @@ $("#genre-submit").click(function(event){
 
 //
 
+
+////////////////////
+///////BIT API//////
+////////////////////
+
+//Define your variables MF
+var bitBandName
+var bitBandImage
+var bitFacebook
+var bitTourSchedule
+var bitFacebookP
+var bitHolder
+var bitArtist = artist //determine if this should be bitArtist, but I think this can stay as artist
+
 //api call
-searchBandsInTown("kiss")
-function searchBandsInTown(artist) {
+var searchBandsInTown = function(bitArtist) {
   // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
-  var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
+  var queryURL = "https://rest.bandsintown.com/artists/" + bitArtist + "?app_id=codingbootcamp";
   $.ajax({
     url: queryURL,
     method: "GET"
-  }).then(function(response) {
+  })
+  .then(function(response) {
     // Printing the entire object to console
     console.log(response);
-
+    
     //making html elemnts to store data about artist
-
-    var bitBandName = $("<h1>").text(response.name);
-    var bitBandImage = $("<img>").attr("src", response.thumb_url);
-    var bitFacebook = $("<a>")
+    
+    bitBandName = $("<h1>").text(response.name);
+    bitBandImage = $("<img>").attr("src", response.thumb_url);
+    bitFacebook = $("<a>")
     bitFacebook.attr("href", response.facebook_page_url).text("Facebook Page")
-    var bitTourSchedule = $("<a>").attr("href", response.url).text("Upcoming events!!")
-    var bitFacebookP = $("<p>").append(bitFacebook)
-    var bitHolder = $("<p>").append(bitTourSchedule)
+    bitFacebookP = $("<p>").append(bitFacebook)
+    bitTourSchedule = $("<a>").attr("href", response.url).text("Upcoming events!!")
+    bitHolder = $("<p>").append(bitTourSchedule)
     console.log(bitBandImage)
     $("#band-info").empty()
     $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder)

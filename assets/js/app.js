@@ -122,7 +122,7 @@ $("#band-info").on("click", "#clear-band-info", function() {
     $("#band-info").empty()
   });
 
-  //walmart API
+  
   
   
 

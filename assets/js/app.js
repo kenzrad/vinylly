@@ -21,6 +21,18 @@ $("#album-img").click(function() {
 //////FURRBASE//////
 ////////////////////
 
+////FIREBASE CONFIGURATION////
+// Global variables
+
+var musicGenre = "";
+var userName = "";
+//variables to add
+    //user name, watcher data(tracker), 
+
+
+
+
+  //Initialize Firebase
 //FURRBASE CONFIGURATION
 var config = {
     apiKey: "AIzaSyBjfEbt9pYyYGj6wD_ditzsXsHdRPFtuiI",
@@ -49,6 +61,15 @@ $("#genre-submit").click(function(event){
     event.preventDefault();
     $("#bit-modal").modal("hide"); 
 
+$("#genre-submit").on("click", function(){
+    var genreInput = $("#genre-input").val().trim();
+    var nameInput = $("#name-input").val().trim();
+    musicGenre = genreInput;
+    userName = nameInput;
+    console.log(musicGenre);
+    database.ref("/vinylly").push({
+        genre: musicGenre,
+        username: userName, });
     genre = $("#genre-input").val().trim();
     userName = $("#name-input").val().trim();
     console.log(userName, genre);
@@ -62,34 +83,32 @@ $("#genre-submit").click(function(event){
 
 })
 
-//Display current username and genre
 
-//
 
-//api call
-searchBandsInTown("kiss")
-function searchBandsInTown(artist) {
-  // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
-  var queryURL = "https://rest.bandsintown.com/artists/" + artist + "?app_id=codingbootcamp";
-  $.ajax({
-    url: queryURL,
-    method: "GET"
-  }).then(function(response) {
-    // Printing the entire object to console
-    console.log(response);
-
-    //making html elemnts to store data about artist
-
-    var bitBandName = $("<h1>").text(response.name);
-    var bitBandImage = $("<img>").attr("src", response.thumb_url);
-    var bitFacebook = $("<a>")
-    bitFacebook.attr("href", response.facebook_page_url).text("Facebook Page")
-    var bitTourSchedule = $("<a>").attr("href", response.url).text("Upcoming events!!")
-    var bitFacebookP = $("<p>").append(bitFacebook)
-    var bitHolder = $("<p>").append(bitTourSchedule)
-    console.log(bitBandImage)
-    $("#band-info").empty()
-    $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder)
-  });
+////SONG INFOMRATION////
+var music = {
+  popsong: {
+    songName: "Talk",
+    artist: "Khalid",
+    year: "2019",
+    album: "Free Spirit",
+    length: "03:18"
+  
+  }
 }
+
+////Audio Set-Up////
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("scr", "assets\audio\Khalid-Talk.mp3")
+$("#play-dat").on("click", function(){
+  audioElement.play();
+})
+
+$("#stop-dat").on("click", function(){
+  audioElement.pause();
+})
+
+
+
+
 

@@ -142,33 +142,43 @@ var music = {
   pop: {
     songName: "Talk",
     artist: "Khalid",
-    year: "2019",
     album: "Free Spirit",
+    year: "2019",
     length: "03:18",
     mp3Audio: "assets/audio/Khalid-Talk.mp3"
   },
   soul: {
     songName: "Walk On By",
     artist: "Isaac Hayes",
-    year: "1969",
     album: "Hot Buttered Soul",
+    year: "1969",
     length: "04:34",
     mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3"
   },
   country: {
     songName: "Check Yes or No",
     artist: "George Strait",
-    year: "1995",
     album: "Strait Out of the Box",
+    year: "1995",
     length: "03:20",
     mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3"
   },
 };
 
-var genreIndex = Indexof(genre);
+var genreInput = "";
+var g = ""
+var s = ""
+$("#genre-submit").on("click", function(){
+    genreInput = $('#inputGroupSelect04').val();
+    g = genreInput
+    s = music[g].mp3Audio;
+    console.log("this is: "  + g);
+    console.log("this is:" + s);
+    
+});
 
 
-var currentAudio = music[genreIndex].mp3Audio;
+
 
 
 

@@ -15,12 +15,14 @@
     <!--jQuery-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
  
    <!-- Firebase Reference -->
    <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
  
    <!-- Moment.js Reference -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 </head>
 
@@ -34,61 +36,59 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav nav-links">
             <li id="music-li" class="nav-item">
-                <a class="nav-link" href="#">Music</a>
+                <a class="nav-link" href="#">Play</a>
+            </li>
+            <li id="bio-li" class="nav-item">
+                <a class="nav-link" href="#">Bio</a>
+            </li>
+            <li id="event-li" class="nav-item">
+                <a class="nav-link" href="#">Event</a>
             </li>
             <li id="merch-li" class="nav-item">
                 <a class="nav-link" href="#">Merch</a>
             </li>
-            <li id="events-li" class="nav-item">
-                <a class="nav-link" href="#">Events</a>
-            </li>
+
         </ul>
     </div>    
 </nav>
 
 <div id="record-room" class="container text-center p-0 m-0">
     <div class="row">
-        <div class="col-md-6 p-0 m-0">
+        <div class="col-lg-8 p-0 m-0">
             <div id="album-view" class="text-center m-0 p-0">
-                <img id="record-img" class="record m-0 p-0" src="assets/images/objects/isaac-hayes-hot-buttered-soul.png" alt="record" class="img"> 
+                <img id="record-img" class="img-fluid record m-0 p-0" src="assets/images/objects/record_500.png" alt="record" class="img"> 
                 <img id="album-img" class="album-cover m-0 p-0" src="assets/images/albums/album-placeholder.png" alt="album cover" class="img">
             </div>
-            <div id="player-container" class="text-center">
-                <img id="player-img" class="m-0 p-0" src="assets/images/objects/player.png">
+            <div id="player-container" class="img-fluid text-center">
+                <img id="player-img" class="m-0 p-0" src="assets/images/objects/player_500.png">
             </div>
         </div>
-        <div class="col-md-6 m-0 p-0">
+        <div id="audio-info" class="col-lg-4 m-0 p-0">
+            <br>
+            <h1>Song info will go here</h1>
+            <!-- AUDIO CONTROLS -->
+            <div class="text-center">
+                    <button class="btn btn-default btn-xs play-dat">
+                        <span class="fa fa-play"></span></button>
+                    </button>
+                    <button class="btn btn-default btn-xs pause-dat">
+                    <span class="fa fa-pause"></span></button>
+                    <button class="btn btn-default btn-xs stop-dat">
+                        <span class= "fa fa-stop"></span></button>
+            </div>
         </div>
     </div>
 </div>
 
-<div id="audio-controls">
-    <button id="play-dat">Play Dat</button>
-    <button id="stop-dat">Stop Dat</button>
+<div class="row">
+    <div id="band-info" class="col-12"></div>
 </div>
-
-
-<!--Hide divs responsively based on screen size and have toggle option-->
-<!--Band Bio/Fact Div Placeholder ANNA-->
-<div id="bit-div" class="container"></div>
-
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#album-select-modal">
-        Select Album
-        </button> -->
-
-
-<!--PATRICKS DIV YO YO YO YOYOYOYOYOYOYO-->
-<div class = "container text-center" id ="band-info">
-
-    
-<div>
-    <div id="band-info" class = "container text-center">
-    </div>
+<div class="row">
+    <div id="event-info" class="col-12"></div>
 </div>
-
-
-
+<div class="row">
+    <div id="merch-info" class="col-12"></div>
+</div>
     
 <!--Username and Genre Modal-->
 <div class="modal fade" id="bit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

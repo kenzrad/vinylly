@@ -15,6 +15,14 @@
     // $("#record-img").on("click", function()) {
     //     $("#record-img").attr("style", "transform: rotate(7deg)");
     // }
+
+    var recordPlay = function() {
+        $("#record-img").addClass("record-spin");
+    }
+
+    var recordPause = function() {
+        $("#record-img").removeClass("record-spin");
+    }
 //
 
 
@@ -72,7 +80,6 @@
 //
 
 
-
 ////////////////////
 ///////BIT API//////
 ////////////////////
@@ -124,34 +131,43 @@ $("#band-info").on("click", "#clear-band-info", function() {
 
   
   
-  
 
 ////////////////////
 /////AUDIOPHILE/////
 ////////////////////
 
-    //SONG INFO
-    var music = {
-        popsong: {
-            songName: "Talk",
-            artist: "Khalid",
-            year: "2019",
-            album: "Free Spirit",
-            length: "03:18"
-        
-        }
-    }
 
-    ////Audio Set-Up////
-    var audioElement = document.createElement("audio");
-    audioElement.setAttribute("scr", "assets\audio\Khalid-Talk.mp3")
-    $("#play-dat").on("click", function(){
+////SONG INFOMRATION////
+var music = {
+  popsong: {
+    songName: "Talk",
+    artist: "Khalid",
+    year: "2019",
+    album: "Free Spirit",
+    length: "03:18"
+  
+  }
+};
+
+////Audio Set-Up////
+$(document).ready(function() {
+  var audioElement = document.createElement("audio");
+  audioElement.setAttribute("src", "assets/audio/Isaac Hayes Walk On By (HQ).mp3")
+  $(".play-dat").on("click", function(){
     audioElement.play();
-    })
+    recordPlay();
+  })
 
-    $("#stop-dat").on("click", function(){
+ $(".pause-dat").on("click", function(){
     audioElement.pause();
-    })
+    recordPause();
+
+ $(".stop-dat").on("click", function (){
+    audioElement.pause();
+    recordStop();
+  })
+});
+});
 
 //
 

@@ -136,6 +136,11 @@ var music = {
   }
 }
 
+////////////////////
+//////AUDIOFILE/////
+////////////////////
+
+
 ////Audio Set-Up////
 var audioElement = document.createElement("audio");
 audioElement.setAttribute("scr", "assets\audio\Khalid-Talk.mp3")

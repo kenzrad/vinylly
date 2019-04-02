@@ -16,6 +16,12 @@
     //     $("#record-img").attr("style", "transform: rotate(7deg)");
     // }
 
+
+
+    var needleOn = function() {
+        $("#needle-img").addClass("needle-move");
+    }
+
     var recordPlay = function() {
         $("#record-img").addClass("record-spin");
     }
@@ -23,6 +29,8 @@
     var recordPause = function() {
         $("#record-img").removeClass("record-spin");
     }
+
+
 //
 
 
@@ -121,16 +129,70 @@
             $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder,bitbutton)
         });
     };
-searchBandsInTown("kiss")
+    
+    //Remove this once we integrate into other thangs
+    searchBandsInTown("kiss")
 
-//clear band info div
-$("#band-info").on("click", "#clear-band-info", function() {
+    //clear band info div
+    $("#band-info").on("click", "#clear-band-info", function() {
+        $("#band-info").empty()
+    });
+//
 
-    $("#band-info").empty()
-  });
 
-  //walmart API
-  
+////////////////////
+////////BIO/////////
+////////////////////
+
+//global vars for event data for-KENSEY
+var bitEventName
+var bitEventDate
+var spliced
+var format
+var convertedDate
+var bitFinalDate
+var bitVenue
+var bitUpcoming_event
+var bitTix
+var bitCity
+var bitLocation
+//api call for event data
+var searchEventsInTown = function (bitArtist) {
+   // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
+   var queryURL = "https://rest.bandsintown.com/artists/" + bitArtist + "/events?app_id=codingbootcamp";
+   $.ajax({
+       url: queryURL,
+       method: "GET"
+   })
+       .then(function (response) {
+           // Logging the entire object to console
+           console.log(response);
+           bitEventName = $("<h1>").text(response[0].description)
+           bitEventDate = (response[0].datetime)
+           //taking just the date and converting into date format
+           spliced = bitEventDate.slice(0, 10)
+           console.log(spliced)
+           format = "YYYY-MM-DD";
+           convertedDate = moment(spliced, format);
+           bitFinalDate = convertedDate.format("MM/DD/YY")
+           bitVenue = $("<p>").text(response[0].venue.name)
+           bitVenue.append(" " + bitFinalDate)
+        //venue name, and link to tickets
+           bitUpcoming_event = $("<h1>").text("Upcoming Event")
+           bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!")
+
+           //location of event
+           bitCity = response[0].venue.city
+           bitState = response[0].venue.region
+           bitLocation = $("<p>").text(bitCity + "," + bitState)
+           $("#event-info").empty()
+           $("#event-info").append(bitUpcoming_event, bitEventName, bitVenue,bitLocation, bitTix)
+
+       });
+};
+//
+
+
 
 ////////////////////
 /////AUDIOPHILE/////
@@ -166,6 +228,7 @@ var music = {
 };
 
 var genreInput = "";
+var audioElement = "";
 var g = ""
 var s = ""
 var audioElement = "";
@@ -174,6 +237,7 @@ $("#genre-submit").on("click", function(){
     g = genreInput
     s = music[g].mp3Audio;
     audioElement = document.createElement("audio");
+    audioElement.setAttribute("src", s)
     console.log("this is: "  + g);
     console.log("this is:" + s);
     
@@ -181,25 +245,20 @@ $("#genre-submit").on("click", function(){
 
 
 ////Audio Set-Up////
-
-  
   $("#play-dat").on("click", function(){
-    audioElement.setAttribute("src", s)
     audioElement.play();
     recordPlay();
   })
 
  $("#pause-dat").on("click", function(){
-    audioElement.setAttribute("src", s)
     audioElement.pause();
     recordPause();
+ })
 
  $("#stop-dat").on("click", function (){
-    audioElement.setAttribute("src", s)
     audioElement.pause();
     recordStop();
   })
-});
 
 
 //

@@ -85,6 +85,10 @@ animation:spin 4s linear infinite;
         left: 50px;
         z-index: 0;
     }
+
+    #band-info{
+        color:blue
+    }
 /*-----------------------------------*/
 
 

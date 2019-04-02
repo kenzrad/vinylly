@@ -92,7 +92,7 @@
     var bitFacebookP
     var bitHolder
     var bitArtist
-
+    
     //api call
     var searchBandsInTown = function(bitArtist) {
         // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
@@ -114,12 +114,23 @@
             bitFacebookP = $("<p>").append(bitFacebook)
             bitTourSchedule = $("<a>").attr("href", response.url).text("Upcoming events!!")
             bitHolder = $("<p>").append(bitTourSchedule)
+            bitbutton = $("<button>").attr("id","clear-band-info")
+            bitbutton.text("get rid of dis")
             console.log(bitBandImage)
             $("#band-info").empty()
-            $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder)
+            $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder,bitbutton)
         });
     };
+searchBandsInTown("kiss")
 
+//clear band info div
+$("#band-info").on("click", "#clear-band-info", function() {
+
+    $("#band-info").empty()
+  });
+
+  //walmart API
+  
 
 ////////////////////
 /////AUDIOPHILE/////

@@ -168,39 +168,39 @@ var music = {
 var genreInput = "";
 var g = ""
 var s = ""
+var audioElement = "";
 $("#genre-submit").on("click", function(){
     genreInput = $('#inputGroupSelect04').val();
     g = genreInput
     s = music[g].mp3Audio;
+    audioElement = document.createElement("audio");
     console.log("this is: "  + g);
     console.log("this is:" + s);
     
 });
 
 
-
-
-
-
 ////Audio Set-Up////
-$(document).ready(function() {
-  var audioElement = document.createElement("audio");
-  audioElement.setAttribute("src", currentAudio)
-  $(".play-dat").on("click", function(){
+
+  
+  $("#play-dat").on("click", function(){
+    audioElement.setAttribute("src", s)
     audioElement.play();
     recordPlay();
   })
 
- $(".pause-dat").on("click", function(){
+ $("#pause-dat").on("click", function(){
+    audioElement.setAttribute("src", s)
     audioElement.pause();
     recordPause();
 
- $(".stop-dat").on("click", function (){
+ $("#stop-dat").on("click", function (){
+    audioElement.setAttribute("src", s)
     audioElement.pause();
     recordStop();
   })
 });
-});
+
 
 //
 

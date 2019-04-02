@@ -29,11 +29,7 @@
     var recordPause = function() {
         $("#record-img").removeClass("record-spin");
     }
-    $("#play-btn").on("click", function(){
-        console.log("clickeD!!!!!!")
-        needleOn();
-        recordPlay();
-    });
+
 
 //
 
@@ -133,16 +129,29 @@
             $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder,bitbutton)
         });
     };
-searchBandsInTown("kiss")
+    
+    //Remove this once we integrate into other thangs
+    searchBandsInTown("kiss")
 
-//clear band info div
-$("#band-info").on("click", "#clear-band-info", function() {
+    //clear band info div
+    $("#band-info").on("click", "#clear-band-info", function() {
+        $("#band-info").empty()
+    });
+//
 
-    $("#band-info").empty()
-  });
+
+////////////////////
+//////SHOPPING//////
+////////////////////
 
   //walmart API
+
   
+
+//
+
+
+
 
 ////////////////////
 /////AUDIOPHILE/////
@@ -178,43 +187,38 @@ var music = {
 };
 
 var genreInput = "";
+var audioElement = "";
 var g = ""
 var s = ""
 $("#genre-submit").on("click", function(){
     genreInput = $('#inputGroupSelect04').val();
     g = genreInput
     s = music[g].mp3Audio;
+    audioElement = document.createElement("audio");
+    audioElement.setAttribute("src", )
     console.log("this is: "  + g);
     console.log("this is:" + s);
     
 });
 
-
-
-
-
-
 ////Audio Set-Up////
-$(document).ready(function() {
-  var audioElement = document.createElement("audio");
-  audioElement.setAttribute("src", currentAudio)
-  $(".play-dat").on("click", function(){
-    audioElement.play();
-    recordPlay();
-    needleOn();
-  })
+    $(".play-dat").on("click", function(){
+        audioElement.play();
+        recordPlay();
+        needleOn();
+    })
 
- $(".pause-dat").on("click", function(){
-    audioElement.pause();
-    recordPause();
+    $(".pause-dat").on("click", function(){
+        audioElement.pause();
+        recordPause();
+    })
 
- $(".stop-dat").on("click", function (){
-    audioElement.pause();
-    recordStop();
-  })
+    $(".stop-dat").on("click", function (){
+        audioElement.pause();
+        recordStop();
+    })
+
 });
-});
-
 //
 
 

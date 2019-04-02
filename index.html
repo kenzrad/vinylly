@@ -67,45 +67,58 @@
         <div id="audio-info" class="col-lg-4 m-0 p-0">
             <br>
             <h1>Song info will go here</h1>
-            <div class="song-input-group">
+            <form class="song-input-group">
                 <select class="song-custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                   <option selected>Choose a Genre...</option>
                   <option value="pop">Pop</option>
                   <option value="soul">Soul</option>
                   <option value="country">Country</option>
                 </select>
+                
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" id = "genre-submit" type="submit">Button</button>
+                  <input class="btn btn-outline-secondary" id ="genre-submit" type="submit">
                 </div>
-              </div>
 
+            </form>
 
             <!-- AUDIO CONTROLS -->
-            <div class="text-center">
-                <button id="play-btn" class="btn btn-default btn-xs">
+            <div id="control-btns" class="text-center">
+                <button class="btn btn-default btn-xs" id = "play-dat">
                     <span class="fa fa-play"></span>
                 </button>
-                <button id="pause-btn" class="btn btn-default btn-xs">
+                <button class="btn btn-default btn-xs" id = "pause-dat">
                     <span class="fa fa-pause"></span>
                 </button>
-                <button id="stop-btn" class="btn btn-default btn-xs">
+                <button class="btn btn-default btn-xs" id = "stop-dat">
                     <span class= "fa fa-stop"></span>
                 </button>
             </div>
         </div>
     </div>
 
+ 
+
 
     <div class="row">
         <div id="band-info" class="col-12"></div>
     </div>
+
+
     <div class="row">
         <div id="event-info" class="col-12"></div>
     </div>
+
+
     <div class="row">
         <div id="merch-info" class="col-12"></div>
     </div>
+
 </div>  
+
+
+
+
+
 <!--Username and Genre Modal-->
 <div class="modal fade" id="bit-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">

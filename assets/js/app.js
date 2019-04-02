@@ -16,6 +16,12 @@
     //     $("#record-img").attr("style", "transform: rotate(7deg)");
     // }
 
+
+
+    var needleOn = function() {
+        $("#needle-img").addClass("needle-move");
+    }
+
     var recordPlay = function() {
         $("#record-img").addClass("record-spin");
     }
@@ -23,6 +29,12 @@
     var recordPause = function() {
         $("#record-img").removeClass("record-spin");
     }
+    $("#play-btn").on("click", function(){
+        console.log("clickeD!!!!!!")
+        needleOn();
+        recordPlay();
+    });
+
 //
 
 
@@ -156,6 +168,7 @@ $(document).ready(function() {
   $(".play-dat").on("click", function(){
     audioElement.play();
     recordPlay();
+    needleOn();
   })
 
  $(".pause-dat").on("click", function(){

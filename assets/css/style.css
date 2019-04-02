@@ -1,4 +1,4 @@
-/*global CSS shizzzz*/
+/*----------STYLIN---------------*/
 body {
     background-color: black;
 }
@@ -18,29 +18,9 @@ body {
     letter-spacing: 0.1em;
 }
 
-/* #record-img {
--webkit-animation:spin 4s linear infinite;
--moz-animation:spin 4s linear infinite;
-animation:spin 4s linear infinite;
-}
-#record-img:hover {
-@-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
-@-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
-@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
-} */
+
 /*----------RECORD MOVE---------------*/
-/* #record-img {
-    border-radius: 50%;
-    -webkit-transition: -webkit-transform 120s linear;
-            transition:         transform 120s linear;
-  }
-#record-img:hover {
-    -webkit-transform: rotate(10800deg);
-            transform: rotate(10800deg);
-  } */
-
-
   @keyframes rotate {
     from {
       transform: rotate(0deg);
@@ -56,24 +36,43 @@ animation:spin 4s linear infinite;
       animation-iteration-count: infinite;
       animation-timing-function: linear;
   }
-/*-----------------------------------*/
 
-/*container that holds record player and album view divs*/
-#record-room {
-    position: relative;
-    height: 700px;
-    
-    /* border: solid; --just for visualizing-- */
-    /* border-color: grey; --just for visualizing-- */
-    /* background-color: purple; --just for visualizing-- */
-}
 
-    /*album and record overlay*/
-    #album-view {
-        position: absolute;
-        top: 0;
-        left: 0p;
+    /* #record-img {
+    -webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+    }
+    #record-img:hover {
+    @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
+    @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
+    @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+    } */
+
+/*----------NEEDLE MOVE---------------*/
+@keyframes move {
+    from {
+      transform: rotate(0deg);
+    }
+    to { 
+      transform: rotate(30deg);
+    }
+  }
+  
+  .needle-move {
+      animation-name:            move; 
+      animation-duration:        4s; 
+      /* animation-iteration-count: infinite; */
+      animation-timing-function: linear;
+  }
+
+
+/*---------PLAYER IMAGES---------------*/
+
+    #record-room {
+        position: relative;
+        height: 700px;
     }
 
     #record-img {
@@ -90,6 +89,8 @@ animation:spin 4s linear infinite;
         top: 37.5px;
         left: 112.5px;
         z-index: 3;
+        width: 520px;
+        height: 520px;
     }
 
     /*player and needle and all the beautiful things*/
@@ -99,6 +100,18 @@ animation:spin 4s linear infinite;
         left: 50px;
         z-index: 0;
     }
+
+    #needle-img {
+        position: absolute;
+        top: -375px;
+        left: 175px;
+        z-index: 3;
+    }
+
+
+
+
+/*----------INFO DIVS--------------*/
 
     #band-info{
         color:blue;
@@ -114,7 +127,9 @@ animation:spin 4s linear infinite;
         color:blue;
         position: relative;
     }
-/*-----------------------------------*/
+
+
+/*------------MODALS---------------*/
 
 
 #this-album-modal {
@@ -123,13 +138,3 @@ animation:spin 4s linear infinite;
 
 
 
-
-
-
-
-
-/*-----------------------------------*/
-
-#band-info{
-    color:blue
-}

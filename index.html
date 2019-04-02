@@ -55,12 +55,13 @@
 <div class="container text-center p-0 m-0">
     <div id="record-room" class="row">
         <div class="col-lg-8 p-0 m-0">
-            <div id="album-view" class="text-center m-0 p-0">
+            <div class="text-center m-0 p-0">
                 <img id="record-img" class="img-fluid record m-0 p-0" src="assets/images/objects/record_500.png" alt="record" class="img"> 
                 <img id="album-img" class="album-cover m-0 p-0" src="assets/images/albums/album-placeholder.png" alt="album cover" class="img">
             </div>
             <div id="player-container" class="img-fluid text-center">
                 <img id="player-img" class="m-0 p-0" src="assets/images/objects/player_500.png">
+                <img id="needle-img" class="m-0 p-0" src="assets/images/objects/needle_500.png">
             </div>
         </div>
         <div id="audio-info" class="col-lg-4 m-0 p-0">
@@ -68,13 +69,15 @@
             <h1>Song info will go here</h1>
             <!-- AUDIO CONTROLS -->
             <div class="text-center">
-                    <button class="btn btn-default btn-xs play-dat">
-                        <span class="fa fa-play"></span></button>
-                    </button>
-                    <button class="btn btn-default btn-xs pause-dat">
-                    <span class="fa fa-pause"></span></button>
-                    <button class="btn btn-default btn-xs stop-dat">
-                        <span class= "fa fa-stop"></span></button>
+                <button id="play-btn" class="btn btn-default btn-xs">
+                    <span class="fa fa-play"></span>
+                </button>
+                <button id="pause-btn" class="btn btn-default btn-xs">
+                    <span class="fa fa-pause"></span>
+                </button>
+                <button id="stop-btn" class="btn btn-default btn-xs">
+                    <span class= "fa fa-stop"></span>
+                </button>
             </div>
         </div>
     </div>

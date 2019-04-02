@@ -81,8 +81,8 @@ $("#genre-submit").on("click", function(){
     $("#name-display").html(`${userName}`);
     $("#genre-display").html(`Current Genre: ${genre}`)
 
-})
-
+});
+});
 
 
 ////SONG INFOMRATION////
@@ -95,18 +95,27 @@ var music = {
     length: "03:18"
   
   }
-}
+};
 
 ////Audio Set-Up////
+$(document).ready(function() {
 var audioElement = document.createElement("audio");
-audioElement.setAttribute("scr", "assets\audio\Khalid-Talk.mp3")
-$("#play-dat").on("click", function(){
+audioElement.setAttribute("src", "assets/audio/Isaac Hayes Walk On By (HQ).mp3")
+$(".play-dat").on("click", function(){
   audioElement.play();
+  recordPlay();
 })
 
-$("#stop-dat").on("click", function(){
+$(".pause-dat").on("click", function(){
   audioElement.pause();
+  recordPause();
+
+$(".stop-dat").on("click", function (){
+  audioElement.pause();
+  recordStop();
 })
+});
+});
 
 
 

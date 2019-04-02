@@ -15,6 +15,14 @@
     // $("#record-img").on("click", function()) {
     //     $("#record-img").attr("style", "transform: rotate(7deg)");
     // }
+
+    var recordPlay = function() {
+        $("#record-img").addClass("record-spin");
+    }
+
+    var recordPause = function() {
+        $("#record-img").removeClass("record-spin");
+    }
 //
 
 

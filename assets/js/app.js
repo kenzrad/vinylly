@@ -21,6 +21,18 @@ $("#album-img").click(function() {
 //////FURRBASE//////
 ////////////////////
 
+////FIREBASE CONFIGURATION////
+// Global variables
+
+var musicGenre = "";
+var userName = "";
+//variables to add
+    //user name, watcher data(tracker), 
+
+
+
+
+  //Initialize Firebase
 //FURRBASE CONFIGURATION
 var config = {
     apiKey: "AIzaSyBjfEbt9pYyYGj6wD_ditzsXsHdRPFtuiI",
@@ -49,6 +61,15 @@ $("#genre-submit").click(function(event){
     event.preventDefault();
     $("#bit-modal").modal("hide"); 
 
+$("#genre-submit").on("click", function(){
+    var genreInput = $("#genre-input").val().trim();
+    var nameInput = $("#name-input").val().trim();
+    musicGenre = genreInput;
+    userName = nameInput;
+    console.log(musicGenre);
+    database.ref("/vinylly").push({
+        genre: musicGenre,
+        username: userName, });
     genre = $("#genre-input").val().trim();
     userName = $("#name-input").val().trim();
     console.log(userName, genre);
@@ -62,9 +83,7 @@ $("#genre-submit").click(function(event){
 
 })
 
-//Display current username and genre
 
-//
 
 
 ////////////////////
@@ -105,5 +124,30 @@ var searchBandsInTown = function(bitArtist) {
     $("#band-info").empty()
     $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder)
   });
+////SONG INFOMRATION////
+var music = {
+  popsong: {
+    songName: "Talk",
+    artist: "Khalid",
+    year: "2019",
+    album: "Free Spirit",
+    length: "03:18"
+  
+  }
 }
+
+////Audio Set-Up////
+var audioElement = document.createElement("audio");
+audioElement.setAttribute("scr", "assets\audio\Khalid-Talk.mp3")
+$("#play-dat").on("click", function(){
+  audioElement.play();
+})
+
+$("#stop-dat").on("click", function(){
+  audioElement.pause();
+})
+
+
+
+
 

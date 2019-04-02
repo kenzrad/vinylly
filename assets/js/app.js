@@ -13,6 +13,7 @@
 // Global variables
 
 var musicGenre = "";
+var userName = "";
 //variables to add
     //user name, watcher data(tracker), 
 
@@ -35,10 +36,30 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 $("#genre-submit").on("click", function(){
-    var genreInput = $("#music-genre").val().trim();
+    var genreInput = $("#genre-input").val().trim();
+    var nameInput = $("#name-input").val().trim();
     musicGenre = genreInput;
+    userName = nameInput;
     console.log(musicGenre);
     database.ref("/vinylly").push({
         genre: musicGenre,
+        username: userName,
     });
 })
+
+
+
+////SONG INFOMRATION////
+var music = {
+  popsong: {
+    songName: "Talk",
+    artist: "Khalid",
+    year: "2019",
+    album: "Free Spirit",
+    length: "03:18"
+  
+  }
+}
+
+
+

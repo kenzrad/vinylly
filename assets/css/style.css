@@ -30,7 +30,7 @@ animation:spin 4s linear infinite;
 
 } */
 /*----------RECORD MOVE---------------*/
-#record-img {
+/* #record-img {
     border-radius: 50%;
     -webkit-transition: -webkit-transform 120s linear;
             transition:         transform 120s linear;
@@ -38,15 +38,30 @@ animation:spin 4s linear infinite;
 #record-img:hover {
     -webkit-transform: rotate(10800deg);
             transform: rotate(10800deg);
-  }
+  } */
 
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to { 
+      transform: rotate(360deg);
+    }
+  }
+  
+  .record-spin {
+      animation-name:            rotate; 
+      animation-duration:        4s; 
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+  }
 /*-----------------------------------*/
 
 /*container that holds record player and album view divs*/
 #record-room {
     position: relative;
-    width: 500px;
-    height: 350px;
+    
     /* border: solid; --just for visualizing-- */
     /* border-color: grey; --just for visualizing-- */
     /* background-color: purple; --just for visualizing-- */
@@ -61,8 +76,6 @@ animation:spin 4s linear infinite;
     }
 
     #record-img {
-        height: 280px;
-        width: 280px;
         position: absolute;
         top: 38px;
         /* left: 112.5px; */
@@ -84,6 +97,10 @@ animation:spin 4s linear infinite;
         top: 25px;
         left: 50px;
         z-index: 0;
+    }
+
+    #band-info{
+        color:blue
     }
 /*-----------------------------------*/
 

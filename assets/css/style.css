@@ -30,7 +30,7 @@ animation:spin 4s linear infinite;
 
 } */
 /*----------RECORD MOVE---------------*/
-#record-img {
+/* #record-img {
     border-radius: 50%;
     -webkit-transition: -webkit-transform 120s linear;
             transition:         transform 120s linear;
@@ -38,8 +38,24 @@ animation:spin 4s linear infinite;
 #record-img:hover {
     -webkit-transform: rotate(10800deg);
             transform: rotate(10800deg);
-  }
+  } */
 
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to { 
+      transform: rotate(360deg);
+    }
+  }
+  
+  .record-spin {
+      animation-name:            rotate; 
+      animation-duration:        4s; 
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
+  }
 /*-----------------------------------*/
 
 /*container that holds record player and album view divs*/

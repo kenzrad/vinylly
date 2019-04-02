@@ -15,6 +15,14 @@
     // $("#record-img").on("click", function()) {
     //     $("#record-img").attr("style", "transform: rotate(7deg)");
     // }
+
+    var recordPlay = function() {
+        $("#record-img").addClass("record-spin");
+    }
+
+    var recordPause = function() {
+        $("#record-img").removeClass("record-spin");
+    }
 //
 
 
@@ -134,14 +142,21 @@
     }
 
     ////Audio Set-Up////
+    $(document).ready(function () {
     var audioElement = document.createElement("audio");
-    audioElement.setAttribute("scr", "assets\audio\Khalid-Talk.mp3")
-    $("#play-dat").on("click", function(){
-    audioElement.play();
-    })
+    $(audioElement).attr("src", `assets/audio/Khalid-Talk.mp3`)
 
-    $("#stop-dat").on("click", function(){
-    audioElement.pause();
+        $("#play-dat").on("click", function(){
+        console.log("play clicked");
+        audioElement.play();
+        recordPlay();
+        })
+
+        $("#pause-dat").on("click", function(){
+        console.log("pause clicked");
+        audioElement.pause();
+        recordPause();
+        })
     })
 
 //

@@ -61,8 +61,7 @@ animation:spin 4s linear infinite;
 /*container that holds record player and album view divs*/
 #record-room {
     position: relative;
-    width: 500px;
-    height: 350px;
+    
     /* border: solid; --just for visualizing-- */
     /* border-color: grey; --just for visualizing-- */
     /* background-color: purple; --just for visualizing-- */
@@ -77,8 +76,6 @@ animation:spin 4s linear infinite;
     }
 
     #record-img {
-        height: 280px;
-        width: 280px;
         position: absolute;
         top: 38px;
         /* left: 112.5px; */

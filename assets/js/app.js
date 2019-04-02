@@ -139,20 +139,53 @@ $("#band-info").on("click", "#clear-band-info", function() {
 
 ////SONG INFOMRATION////
 var music = {
-  popsong: {
+  pop: {
     songName: "Talk",
     artist: "Khalid",
-    year: "2019",
     album: "Free Spirit",
-    length: "03:18"
-  
-  }
+    year: "2019",
+    length: "03:18",
+    mp3Audio: "assets/audio/Khalid-Talk.mp3"
+  },
+  soul: {
+    songName: "Walk On By",
+    artist: "Isaac Hayes",
+    album: "Hot Buttered Soul",
+    year: "1969",
+    length: "04:34",
+    mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3"
+  },
+  country: {
+    songName: "Check Yes or No",
+    artist: "George Strait",
+    album: "Strait Out of the Box",
+    year: "1995",
+    length: "03:20",
+    mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3"
+  },
 };
+
+var genreInput = "";
+var g = ""
+var s = ""
+$("#genre-submit").on("click", function(){
+    genreInput = $('#inputGroupSelect04').val();
+    g = genreInput
+    s = music[g].mp3Audio;
+    console.log("this is: "  + g);
+    console.log("this is:" + s);
+    
+});
+
+
+
+
+
 
 ////Audio Set-Up////
 $(document).ready(function() {
   var audioElement = document.createElement("audio");
-  audioElement.setAttribute("src", "assets/audio/Isaac Hayes Walk On By (HQ).mp3")
+  audioElement.setAttribute("src", currentAudio)
   $(".play-dat").on("click", function(){
     audioElement.play();
     recordPlay();

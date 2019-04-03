@@ -1,37 +1,3 @@
-/////////////////////
-/////RECORD ROOM/////
-/////////////////////
-
-    //TOGGLE ALBUM RECORD
-    $("#record-img").attr("style", "visibility: hide");
-    $("#album-img").click(function() {
-        // $('#record-div').slideToggle("slide");
-        $('#record-div').animate({
-            width: "toggle"
-        })
-    });
-
-    //RECORD SPIN
-    // $("#record-img").on("click", function()) {
-    //     $("#record-img").attr("style", "transform: rotate(7deg)");
-    // }
-
-
-
-    var needleOn = function() {
-        $("#needle-img").addClass("needle-move");
-    }
-
-    var recordPlay = function() {
-        $("#record-img").addClass("record-spin");
-    }
-
-    var recordPause = function() {
-        $("#record-img").removeClass("record-spin");
-    }
-
-
-//
 
 
 
@@ -88,109 +54,11 @@
 //
 
 
-////////////////////
-///////BIT API//////
-////////////////////
-
-    //Define your variables MF
-    var bitBandName
-    var bitBandImage
-    var bitFacebook
-    var bitTourSchedule
-    var bitFacebookP
-    var bitHolder
-    var bitArtist
-    
-    //api call
-    var searchBandsInTown = function(bitArtist) {
-        // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
-        var queryURL = "https://rest.bandsintown.com/artists/" + bitArtist + "?app_id=codingbootcamp";
-        $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        .then(function(response) {
-            // Printing the entire object to console
-            console.log(response);
-            
-            //making html elemnts to store data about artist
-            
-            bitBandName = $("<h1>").text(response.name);
-            bitBandImage = $("<img>").attr("src", response.thumb_url);
-            bitFacebook = $("<a>")
-            bitFacebook.attr("href", response.facebook_page_url).text("Facebook Page")
-            bitFacebookP = $("<p>").append(bitFacebook)
-            bitTourSchedule = $("<a>").attr("href", response.url).text("Upcoming events!!")
-            bitHolder = $("<p>").append(bitTourSchedule)
-            bitbutton = $("<button>").attr("id","clear-band-info")
-            bitbutton.text("get rid of dis")
-            console.log(bitBandImage)
-            $("#band-info").empty()
-            $("#band-info").append(bitBandName, bitBandImage,bitFacebookP, bitHolder,bitbutton)
-        });
-    };
-    
-    //Remove this once we integrate into other thangs
-    searchBandsInTown("kiss")
-
-    //clear band info div
-    $("#band-info").on("click", "#clear-band-info", function() {
-        $("#band-info").empty()
-    });
-//
 
 
-////////////////////
-////////BIO/////////
-////////////////////
 
-//global vars for event data for-KENSEY
-var bitEventName
-var bitEventDate
-var spliced
-var format
-var convertedDate
-var bitFinalDate
-var bitVenue
-var bitUpcoming_event
-var bitTix
-var bitCity
-var bitLocation
-//api call for event data
-var searchEventsInTown = function (bitArtist) {
-   // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
-   var queryURL = "https://rest.bandsintown.com/artists/" + bitArtist + "/events?app_id=codingbootcamp";
-   $.ajax({
-       url: queryURL,
-       method: "GET"
-   })
-       .then(function (response) {
-           // Logging the entire object to console
-           console.log(response);
-           bitEventName = $("<h1>").text(response[0].description)
-           bitEventDate = (response[0].datetime)
-           //taking just the date and converting into date format
-           spliced = bitEventDate.slice(0, 10)
-           console.log(spliced)
-           format = "YYYY-MM-DD";
-           convertedDate = moment(spliced, format);
-           bitFinalDate = convertedDate.format("MM/DD/YY")
-           bitVenue = $("<p>").text(response[0].venue.name)
-           bitVenue.append(" " + bitFinalDate)
-        //venue name, and link to tickets
-           bitUpcoming_event = $("<h1>").text("Upcoming Event")
-           bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!")
 
-           //location of event
-           bitCity = response[0].venue.city
-           bitState = response[0].venue.region
-           bitLocation = $("<p>").text(bitCity + "," + bitState)
-           $("#event-info").empty()
-           $("#event-info").append(bitUpcoming_event, bitEventName, bitVenue,bitLocation, bitTix)
 
-       });
-};
-//
 
 
 
@@ -199,69 +67,222 @@ var searchEventsInTown = function (bitArtist) {
 ////////////////////
 
 
-////SONG INFOMRATION////
-var music = {
-  pop: {
-    songName: "Talk",
-    artist: "Khalid",
-    album: "Free Spirit",
-    year: "2019",
-    length: "03:18",
-    mp3Audio: "assets/audio/Khalid-Talk.mp3"
-  },
-  soul: {
-    songName: "Walk On By",
-    artist: "Isaac Hayes",
-    album: "Hot Buttered Soul",
-    year: "1969",
-    length: "04:34",
-    mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3"
-  },
-  country: {
-    songName: "Check Yes or No",
-    artist: "George Strait",
-    album: "Strait Out of the Box",
-    year: "1995",
-    length: "03:20",
-    mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3"
-  },
-};
+    ////SONG INFORMATION////
+    var music = {
+        pop: {
+            songName: "Talk",
+            artist: "Khalid",
+            album: "Free Spirit",
+            year: "2019",
+            length: "03:18",
+            mp3Audio: "assets/audio/Khalid-Talk.mp3",
+            albumArt: "assets/images/album/khalid.jpg"
+        },
+        soul: {
+            songName: "Walk On By",
+            artist: "Isaac Hayes",
+            album: "Hot Buttered Soul",
+            year: "1969",
+            length: "04:34",
+            mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
+            albumArt: "assets/images/albums/hayes.jpg"
+        },
+        country: {
+            songName: "Check Yes or No",
+            artist: "George Strait",
+            album: "Strait Out of the Box",
+            year: "1995",
+            length: "03:20",
+            mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
+            albumArt: "assets/images/album/strait.jpg"
+        },
+    };
 
-var genreInput = "";
-var audioElement = "";
-var g = ""
-var s = ""
-var audioElement = "";
-$("#genre-submit").on("click", function(){
-    genreInput = $('#inputGroupSelect04').val();
-    g = genreInput
-    s = music[g].mp3Audio;
-    audioElement = document.createElement("audio");
-    audioElement.setAttribute("src", s)
-    console.log("this is: "  + g);
-    console.log("this is:" + s);
+    var genreInput = "";
+    var audioElement = "";
+    var g = ""
+    var s = ""
+    var audioElement = "";
+
+    $("#genre-submit").on("click", function(){
+        genreInput = $('#inputGroupSelect04').val();
+        g = genreInput
+        s = music[g].mp3Audio;
+        a = music[g].artist;
+        art = music[g].albumArt;
+
+        audioElement = document.createElement("audio");
+        audioElement.setAttribute("src", s)
+        console.log("this is: "  + g);
+        console.log("this is:" + s);
+
+        searchEventsInTown(a);
+        albumView(art);
+    });
+
+
+    ////Audio Set-Up////
+    var resetAlbum = function() {
+        $("#album-img").css("display", "none");
+        $("#album-img" ).animate({ "right": "+=600px" }, 1);
+    };
+
+    var songStarted = false;
+
+    $("#play-dat").on("click", function(){
+        resetAlbum();
+        audioElement.play();
+        if (songStarted) {
+            $("#record-img").addClass("record-spin");
+        }
+        else {
+            songStarted = true;
+            $("#record-img").addClass("record-spin");
+            $("#needle-img").addClass("needle-start")
+            setTimeout(function() {
+                $("#needle-img").addClass("needle-play"); 
+            }, 1000);
+            
+        }
+    })
+
+    $("#pause-dat").on("click", function(){
+        audioElement.pause();
+        //look into pausig record and needle "nice to have"
+        $("#record-img").removeClass("record-spin");
+        $("#needle-img").addClass("needle-pause"); 
+    })
+
+    $("#stop-dat").on("click", function (){
+        audioElement.pause();
+        $("#record-img").removeClass("record-spin");
+        $("#needle-img").removeClass("needle-start"); 
+        $("#needle-img").removeClass("needle-play"); 
+    })
+
+    //TOGGLE ALBUM RECORD
+    var albumView = function(srcLink) {
+        $("#album-img").attr("src", srcLink);
+        $("#player-img").fadeTo(500, 0.3);
+        $("#needle-img").fadeTo(500, 0.3);
+        setTimeout(function() {
+            $("#album-img").fadeIn(300)
+        }, 1000);
+        setTimeout(function() {
+            $("#record-img").css("visibility", "visible");
+        }, 1400);
+
+        $("#album-img").click(function(){
+            $("#player-img").css("opacity", "1");
+            $("#needle-img").css("opacity", "1");
+            $("#album-img" ).animate({ "left": "-=600px" }, 2000);
+        });
+
     
-});
+        console.log(srcLink);
+        // $("#album-img").click(function() {
+        // //     $("#album-img").attr("style", "visibility: show");
+        //     // $('#record-div').animate({
+        //     //     width: "toggle"
+        //     // })
+        // };
+    };
 
 
-////Audio Set-Up////
-  $("#play-dat").on("click", function(){
-    audioElement.play();
-    recordPlay();
-  })
 
- $("#pause-dat").on("click", function(){
-    audioElement.pause();
-    recordPause();
- })
 
- $("#stop-dat").on("click", function (){
-    audioElement.pause();
-    recordStop();
-  })
 
 
 //
 
+////////////////////
+///////BIO//////////
+////////////////////
+
+
+// /last fm api
+    var searchBandBio = function (bitArtist) {
+        // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
+        var queryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + bitArtist + "&api_key=0360dba723cbbda37ff3c4ad152aaa0b&format=json";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+            .then(function (response) {
+                fmArtist = $("<h1>").text(response.artist.name)
+                console.log(fmArtist)
+                fmSumm = response.artist.bio.summary
+                $("#merch-info").append(fmArtist,fmSumm)
+            });
+    };
+//
+
+
+
+////////////////////
+///////EVENT////////
+////////////////////
+
+    //global vars for event data for-KENSEY
+    var bitEventName
+    var bitEventDate
+    var spliced
+    var format
+    var convertedDate
+    var bitFinalDate
+    var bitVenue
+    var bitUpcoming_event
+    var bitTix
+    var bitCity
+    var bitLocation
+    var bitReady = false;
+
+    //api call for event data
+    var searchEventsInTown = function (bitArtist) {
+    // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
+    var queryURL = "https://rest.bandsintown.com/artists/" + bitArtist + "/events?app_id=codingbootcamp";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    })
+        .then(function (response) {
+            bitReady = true;
+            // Logging the entire object to console
+            console.log(response);
+            bitEventName = $("<h1>").text(response[0].description)
+            bitEventDate = (response[0].datetime)
+
+            //taking just the date and converting into date format
+            spliced = bitEventDate.slice(0, 10)
+            console.log(spliced)
+            format = "YYYY-MM-DD";
+            convertedDate = moment(spliced, format);
+            bitFinalDate = convertedDate.format("MM/DD/YY")
+            bitVenue = $("<p>").text(response[0].venue.name)
+            bitVenue.append(" " + bitFinalDate)
+
+                //venue name, and link to tickets
+            bitUpcoming_event = $("<h1>").text("Upcoming Event")
+            bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!")
+
+            //location of event
+            bitCity = response[0].venue.city
+            bitState = response[0].venue.region
+            bitLocation = $("<p>").text(bitCity + "," + bitState)
+           
+        });
+    };
+
+    $("#event-li").on("click", function() {
+        if (bitReady) {
+            console.log("bit ready!")
+            $("#event-info").empty()
+            $("#event-info").append(bitUpcoming_event, bitEventName, bitVenue,bitLocation, bitTix)
+        }
+        else {
+            $("#bit-modal").modal("show");  
+        }
+    });
+//
 
 

@@ -18,7 +18,9 @@ body {
     letter-spacing: 0.1em;
 }
 
-
+.front-z {
+    z-index: 5;
+}
 
 
 /*----------RECORD MOVE---------------*/
@@ -52,22 +54,20 @@ body {
     } */
 
 /*----------NEEDLE MOVE---------------*/
-@keyframes move {
-    from {
-      transform: rotate(0deg);
-    }
-    to { 
-      transform: rotate(30deg);
-    }
-  }
-  
-  .needle-move {
-      animation-name:            move; 
-      animation-duration:        4s; 
-      /* animation-iteration-count: infinite; */
-      animation-timing-function: linear;
+
+  .needle-start {
+    transition: 1s ease-in-out;
+    display: inline-block;
+    transform-origin: 50% 50%;
+    transform: rotate(14deg);
   }
 
+  .needle-play {
+    transition: 5s linear;
+    display: inline-block;
+    transform-origin: 50% 50%;
+    transform: rotate(35deg);
+  }
 
 /*---------PLAYER IMAGES---------------*/
 
@@ -77,6 +77,7 @@ body {
     }
 
     #record-img {
+        visibility: hidden;
         position: absolute;
         top: 38px;
         /* left: 112.5px; */
@@ -87,12 +88,14 @@ body {
     #album-img {
         display: none;
         position: absolute;
-        top: 37.5px;
-        left: 112.5px;
-        z-index: 3;
+        top: 38px;
+        left: 82px;
+        z-index: 4;
         width: 520px;
         height: 520px;
     }
+
+
 
     /*player and needle and all the beautiful things*/
     #player-img {
@@ -110,7 +113,7 @@ body {
     }
 
     #audio-info {
-        z-index: 4;
+        z-index: 5;
     }
     
 

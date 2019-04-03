@@ -82,7 +82,7 @@
         });
 
         $("#name-display").text(`${userName}`);
-        $("#genre-display").text(`Current Genre: ${genre}`)
+        $("#genre-display").text(`${genre}`)
 
     });
 //
@@ -192,11 +192,28 @@ var searchEventsInTown = function (bitArtist) {
 };
 //
 
+////////////////////
+///RETRIEVING FB////
+////////////////////
+var genreInput = "";
+database.ref().on("child_added", function(snapshot) {
+    // Log everything that's coming out of snapshot
+    console.log(snapshot.val());
+    console.log(snapshot.val().genre);
+    // Change the HTML to reflect
+    
+    genreInput = $("#genre-display").text(snapshot.val().genre);
+    console.log("hey" + genreInput)
 
+    // Handle the errors
+  }, function(errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
 
 ////////////////////
 /////AUDIOPHILE/////
 ////////////////////
+
 
 
 ////SONG INFOMRATION////
@@ -227,14 +244,14 @@ var music = {
   },
 };
 
-var genreInput = "";
+
 var audioElement = "";
 var g = ""
 var s = ""
 var audioElement = "";
-$("#genre-submit").on("click", function(){
-    genreInput = $('#inputGroupSelect04').val();
+$("#genre-display").on("click", function(){
     g = genreInput
+    console.log("this is" + g);
     s = music[g].mp3Audio;
     audioElement = document.createElement("audio");
     audioElement.setAttribute("src", s)

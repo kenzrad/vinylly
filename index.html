@@ -67,23 +67,18 @@
         <div id="audio-info" class="col-lg-4 m-0 p-0">
             <br>
             <h1>Song info will go here</h1>
-            <div class="song-input-group">
-                <select class="song-custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                  <option selected>Choose a Genre...</option>
-                  <option value="pop">Pop</option>
-                  <option value="soul">Soul</option>
-                  <option value="country">Country</option>
-                </select>
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" id = "genre-submit" type="submit">Button</button>
-                </div>
+            <div>
+                <div class="card-body">
+                    <button class="btn btn-default" id = "genre-display">
+                    <h4 id="song-display"></h4>
+                    <h4 id="artist-display"></h4>
             </div>
-
+           
             <!-- AUDIO CONTROLS -->
             <div class="text-center">
                     <button class="btn btn-default btn-xs" id = "play-dat">
                         <span class="fa fa-play"></span></button>
-                    <button class="btn btn-default btn-xs" id = "pause-dat">
+                    <button class="btn btn-default btn-xs" type = "submit" id = "pause-dat">
                     <span class="fa fa-pause"></span></button>
                     <button class="btn btn-default btn-xs" id = "stop-dat">
                     <span class= "fa fa-stop"></span></button>
@@ -128,7 +123,18 @@
                     <input type="text" id="name-input" class="form-control validate">
                 </div>
                 <div class="md-form mb-4">
-                    <input type="text" id="genre-input" placeholder="Enter a music genre" class="form-control validate">
+                    <form action="/action_page.php">
+                        <input type="text" id="genre-input" placeholder="Enter a music genre" class="form-control validate">
+                        <datalist id="genre-input">
+                            <option value= "soul">
+                            <option value= "pop">                            
+                            <option value= "rock">
+                            <option value= "country">
+                            <option value= "hip-hop">
+                        </datalist>
+                        <input id = "genre-submit" type="submit">
+                    </form>
+                    
                 </div>
             </div>
             

@@ -51,18 +51,6 @@
         $("#genre-display").text(`Current Genre: ${genre}`)
 
     });
-
-    var genreInput = "";
-
-    database.ref("/vinylly").on("child_added", function(childSnapshot) {
-       if (childSnapshot.child("genre").exists()){
-           genreInput = childSnapshot.val().genre;
-
-           // $("#genre-display").text(snapshot.val().genreInput);
-           console.log(genreInput)
-       }
-
-       });
 //
 
 
@@ -88,8 +76,7 @@
             year: "2019",
             length: "03:18",
             mp3Audio: "assets/audio/Khalid-Talk.mp3",
-            albumArt: "assets/images/albums/khalid.jpg",
-            recordArt: "",
+            albumArt: "assets/images/album/khalid.jpg"
         },
         soul: {
             songName: "Walk On By",
@@ -98,8 +85,7 @@
             year: "1969",
             length: "04:34",
             mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
-            albumArt: "assets/images/albums/hayes.jpg",
-            recordArt: "assets/images/records/hayesRecord.png",
+            albumArt: "assets/images/albums/hayes.jpg"
         },
         country: {
             songName: "Check Yes or No",
@@ -108,8 +94,7 @@
             year: "1995",
             length: "03:20",
             mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
-            albumArt: "assets/images/albums/strait.jpg",
-            recordArt: "assets/images/records/straitRecord.png",
+            albumArt: "assets/images/album/strait.jpg"
         },
     };
 
@@ -118,17 +103,13 @@
     var g = ""
     var s = ""
     var audioElement = "";
-    var songLength
 
     $("#genre-submit").on("click", function(){
         genreInput = $('#inputGroupSelect04').val();
         g = genreInput
         s = music[g].mp3Audio;
         a = music[g].artist;
-        albumArt = music[g].albumArt;
-        recordArt = music[g].recordArt;
-        songLength = music[g].songLength;
-
+        art = music[g].albumArt;
 
         audioElement = document.createElement("audio");
         audioElement.setAttribute("src", s)
@@ -136,29 +117,21 @@
         console.log("this is:" + s);
 
         searchEventsInTown(a);
-        albumView(albumArt, recordArt);
-        resetRecord();
+        searchBandBio(a)
+        albumView(art);
     });
 
 
     ////Audio Set-Up////
     var resetAlbum = function() {
-        console.log ("RESET BITCHES")
         $("#album-img").css("display", "none");
-        $("#album-img" ).animate({ "left": "+=600px" }, 1);
-    };
-
-    var resetRecord = function() {
-        $("#record-img").removeClass("record-spin");
-        $("#record-img").css("visibility", "hidden");
-        $("#needle-img").removeClass("needle-start"); 
-        $("#needle-img").removeClass("needle-play"); 
-        
+        $("#album-img" ).animate({ "right": "+=600px" }, 1);
     };
 
     var songStarted = false;
 
     $("#play-dat").on("click", function(){
+        resetAlbum();
         audioElement.play();
         if (songStarted) {
             $("#record-img").addClass("record-spin");
@@ -188,12 +161,9 @@
         $("#needle-img").removeClass("needle-play"); 
     })
 
-
-
     //TOGGLE ALBUM RECORD
-    var albumView = function(albumArt, recordArt) {
-        $("#album-img").attr("src", albumArt);
-        $("#record-img").attr("src", recordArt);
+    var albumView = function(srcLink) {
+        $("#album-img").attr("src", srcLink);
         $("#player-img").fadeTo(500, 0.3);
         $("#needle-img").fadeTo(500, 0.3);
         setTimeout(function() {
@@ -204,16 +174,19 @@
         }, 1400);
 
         $("#album-img").click(function(){
+            $("#player-img").css("opacity", "1");
+            $("#needle-img").css("opacity", "1");
             $("#album-img" ).animate({ "left": "-=600px" }, 2000);
-            $("#record-img").addClass("hvr-grow-record");
-            setTimeout(function() {
-                $("#record-img").addClass("hvr-shrink-record");
-                $("#record-img").removeClass("hvr-grow-record");
-                $("#player-img").css("opacity", "1");
-                $("#needle-img").css("opacity", "1");
-                resetAlbum();
-            }, 3000) 
         });
+
+    
+        console.log(srcLink);
+        // $("#album-img").click(function() {
+        // //     $("#album-img").attr("style", "visibility: show");
+        //     // $('#record-div').animate({
+        //     //     width: "toggle"
+        //     // })
+        // };
     };
 
 
@@ -237,19 +210,23 @@
             method: "GET"
         })
             .then(function (response) {
-                fmArtist = $("<h1>").text(response.artist.name)
+                fmArtist = $("<h1>").addClass("headerr")
+                fmArtist.text(response.artist.name)
                 console.log(fmArtist)
                 fmSumm = response.artist.bio.summary
-                $("#merch-info").append(fmArtist,fmSumm)
+                fmdiv = $("<div>").addClass("band-bio-div")
+                fmdiv.append(fmArtist, fmSumm)
+                $("#band-info").empty()
+                $("#band-info").append(fmdiv)
             });
     };
-//
+
 
 
 
 ////////////////////
 ///////EVENT////////
-////////////////////
+////////
 
     //global vars for event data for-KENSEY
     var bitEventName
@@ -266,6 +243,7 @@
     var bitReady = false;
 
     //api call for event data
+    
     var searchEventsInTown = function (bitArtist) {
     // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
     var queryURL = "https://rest.bandsintown.com/artists/" + bitArtist + "/events?app_id=codingbootcamp";
@@ -275,37 +253,40 @@
     })
         .then(function (response) {
             bitReady = true;
+            bitdiv = $("<div>").addClass("events-in-town")
             // Logging the entire object to console
             console.log(response);
-            bitEventName = $("<h1>").text(response[0].description)
-            bitEventDate = (response[0].datetime)
+           
+            bitEventDate = (response[0].datetime);
 
             //taking just the date and converting into date format
-            spliced = bitEventDate.slice(0, 10)
-            console.log(spliced)
+            spliced = bitEventDate.slice(0, 10);
+            console.log(spliced);
             format = "YYYY-MM-DD";
             convertedDate = moment(spliced, format);
-            bitFinalDate = convertedDate.format("MM/DD/YY")
-            bitVenue = $("<p>").text(response[0].venue.name)
-            bitVenue.append(" " + bitFinalDate)
+            bitFinalDate = convertedDate.format("MM/DD/YY");
+            bitVenue = $("<p>").text("Venue: " + response[0].venue.name);
+            bitVenue.append("-" + bitFinalDate);
 
                 //venue name, and link to tickets
-            bitUpcoming_event = $("<h1>").text("Upcoming Event")
-            bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!")
+            bitUpcoming_event = $("<h1>").addClass("headerr");
+            bitUpcoming_event.text(bitArtist + "'s Upcoming Event");
+            bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!");
 
             //location of event
             bitCity = response[0].venue.city
             bitState = response[0].venue.region
-            bitLocation = $("<p>").text(bitCity + "," + bitState)
-           
-        });
+            bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState)
+            bitdiv.append(bitUpcoming_event, bitVenue, bitLocation, bitTix)
+        }); 
     };
+   
 
     $("#event-li").on("click", function() {
         if (bitReady) {
             console.log("bit ready!")
             $("#event-info").empty()
-            $("#event-info").append(bitUpcoming_event, bitEventName, bitVenue,bitLocation, bitTix)
+            $("#event-info").append(bitdiv)
         }
         else {
             $("#bit-modal").modal("show");  

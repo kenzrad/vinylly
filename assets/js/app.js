@@ -51,6 +51,18 @@
         $("#genre-display").text(`Current Genre: ${genre}`)
 
     });
+
+    var genreInput = "";
+
+    database.ref("/vinylly").on("child_added", function(childSnapshot) {
+       if (childSnapshot.child("genre").exists()){
+           genreInput = childSnapshot.val().genre;
+
+           // $("#genre-display").text(snapshot.val().genreInput);
+           console.log(genreInput)
+       }
+
+       });
 //
 
 
@@ -76,7 +88,8 @@
             year: "2019",
             length: "03:18",
             mp3Audio: "assets/audio/Khalid-Talk.mp3",
-            albumArt: "assets/images/album/khalid.jpg"
+            albumArt: "assets/images/albums/khalid.jpg",
+            recordArt: "",
         },
         soul: {
             songName: "Walk On By",
@@ -85,7 +98,8 @@
             year: "1969",
             length: "04:34",
             mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
-            albumArt: "assets/images/albums/hayes.jpg"
+            albumArt: "assets/images/albums/hayes.jpg",
+            recordArt: "assets/images/records/hayesRecord.png",
         },
         country: {
             songName: "Check Yes or No",
@@ -94,7 +108,8 @@
             year: "1995",
             length: "03:20",
             mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
-            albumArt: "assets/images/album/strait.jpg"
+            albumArt: "assets/images/albums/strait.jpg",
+            recordArt: "assets/images/records/straitRecord.png",
         },
     };
 
@@ -103,13 +118,17 @@
     var g = ""
     var s = ""
     var audioElement = "";
+    var songLength
 
     $("#genre-submit").on("click", function(){
         genreInput = $('#inputGroupSelect04').val();
         g = genreInput
         s = music[g].mp3Audio;
         a = music[g].artist;
-        art = music[g].albumArt;
+        albumArt = music[g].albumArt;
+        recordArt = music[g].recordArt;
+        songLength = music[g].songLength;
+
 
         audioElement = document.createElement("audio");
         audioElement.setAttribute("src", s)
@@ -117,21 +136,29 @@
         console.log("this is:" + s);
 
         searchEventsInTown(a);
-        searchBandBio(a)
-        albumView(art);
+        albumView(albumArt, recordArt);
+        resetRecord();
     });
 
 
     ////Audio Set-Up////
     var resetAlbum = function() {
+        console.log ("RESET BITCHES")
         $("#album-img").css("display", "none");
-        $("#album-img" ).animate({ "right": "+=600px" }, 1);
+        $("#album-img" ).animate({ "left": "+=600px" }, 1);
+    };
+
+    var resetRecord = function() {
+        $("#record-img").removeClass("record-spin");
+        $("#record-img").css("visibility", "hidden");
+        $("#needle-img").removeClass("needle-start"); 
+        $("#needle-img").removeClass("needle-play"); 
+        
     };
 
     var songStarted = false;
 
     $("#play-dat").on("click", function(){
-        resetAlbum();
         audioElement.play();
         if (songStarted) {
             $("#record-img").addClass("record-spin");
@@ -161,9 +188,12 @@
         $("#needle-img").removeClass("needle-play"); 
     })
 
+
+
     //TOGGLE ALBUM RECORD
-    var albumView = function(srcLink) {
-        $("#album-img").attr("src", srcLink);
+    var albumView = function(albumArt, recordArt) {
+        $("#album-img").attr("src", albumArt);
+        $("#record-img").attr("src", recordArt);
         $("#player-img").fadeTo(500, 0.3);
         $("#needle-img").fadeTo(500, 0.3);
         setTimeout(function() {
@@ -174,19 +204,16 @@
         }, 1400);
 
         $("#album-img").click(function(){
-            $("#player-img").css("opacity", "1");
-            $("#needle-img").css("opacity", "1");
             $("#album-img" ).animate({ "left": "-=600px" }, 2000);
+            $("#record-img").addClass("hvr-grow-record");
+            setTimeout(function() {
+                $("#record-img").addClass("hvr-shrink-record");
+                $("#record-img").removeClass("hvr-grow-record");
+                $("#player-img").css("opacity", "1");
+                $("#needle-img").css("opacity", "1");
+                resetAlbum();
+            }, 3000) 
         });
-
-    
-        console.log(srcLink);
-        // $("#album-img").click(function() {
-        // //     $("#album-img").attr("style", "visibility: show");
-        //     // $('#record-div').animate({
-        //     //     width: "toggle"
-        //     // })
-        // };
     };
 
 

@@ -117,6 +117,7 @@
         console.log("this is:" + s);
 
         searchEventsInTown(a);
+        searchBandBio(a)
         albumView(art);
     });
 
@@ -209,19 +210,23 @@
             method: "GET"
         })
             .then(function (response) {
-                fmArtist = $("<h1>").text(response.artist.name)
+                fmArtist = $("<h1>").addClass("headerr")
+                fmArtist.text(response.artist.name)
                 console.log(fmArtist)
                 fmSumm = response.artist.bio.summary
-                $("#merch-info").append(fmArtist,fmSumm)
+                fmdiv = $("<div>").addClass("band-bio-div")
+                fmdiv.append(fmArtist, fmSumm)
+                $("#band-info").empty()
+                $("#band-info").append(fmdiv)
             });
     };
-//
+
 
 
 
 ////////////////////
 ///////EVENT////////
-////////////////////
+////////
 
     //global vars for event data for-KENSEY
     var bitEventName
@@ -238,6 +243,7 @@
     var bitReady = false;
 
     //api call for event data
+    
     var searchEventsInTown = function (bitArtist) {
     // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
     var queryURL = "https://rest.bandsintown.com/artists/" + bitArtist + "/events?app_id=codingbootcamp";
@@ -247,37 +253,40 @@
     })
         .then(function (response) {
             bitReady = true;
+            bitdiv = $("<div>").addClass("events-in-town")
             // Logging the entire object to console
             console.log(response);
-            bitEventName = $("<h1>").text(response[0].description)
-            bitEventDate = (response[0].datetime)
+           
+            bitEventDate = (response[0].datetime);
 
             //taking just the date and converting into date format
-            spliced = bitEventDate.slice(0, 10)
-            console.log(spliced)
+            spliced = bitEventDate.slice(0, 10);
+            console.log(spliced);
             format = "YYYY-MM-DD";
             convertedDate = moment(spliced, format);
-            bitFinalDate = convertedDate.format("MM/DD/YY")
-            bitVenue = $("<p>").text(response[0].venue.name)
-            bitVenue.append(" " + bitFinalDate)
+            bitFinalDate = convertedDate.format("MM/DD/YY");
+            bitVenue = $("<p>").text("Venue: " + response[0].venue.name);
+            bitVenue.append("-" + bitFinalDate);
 
                 //venue name, and link to tickets
-            bitUpcoming_event = $("<h1>").text("Upcoming Event")
-            bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!")
+            bitUpcoming_event = $("<h1>").addClass("headerr");
+            bitUpcoming_event.text(bitArtist + "'s Upcoming Event");
+            bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!");
 
             //location of event
-            bitCity = response[0].venue.city
-            bitState = response[0].venue.region
-            bitLocation = $("<p>").text(bitCity + "," + bitState)
-           
-        });
+            bitCity = response[0].venue.city;
+            bitState = response[0].venue.region;
+            bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState);
+            bitdiv.append(bitUpcoming_event, bitVenue, bitLocation, bitTix);
+        }); 
     };
+   
 
     $("#event-li").on("click", function() {
         if (bitReady) {
             console.log("bit ready!")
             $("#event-info").empty()
-            $("#event-info").append(bitUpcoming_event, bitEventName, bitVenue,bitLocation, bitTix)
+            $("#event-info").append(bitdiv)
         }
         else {
             $("#bit-modal").modal("show");  

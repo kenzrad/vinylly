@@ -28,7 +28,7 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-fluid navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-fluid navbar-light bg-light fixed-top">
     <a class="navbar-brand header text-center front-z">vinylly</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -49,12 +49,32 @@
             </li>
 
         </ul>
-    </div>    
+    </div>
+    <div id="play-controls" class="d-flex ml-auto mr-5">
+        <!-- Play -->
+        <a class="btn btn-default btn-xs">
+            <i class="fa fa-play mx-1 fa-1.75x ctrl-btn"> </i>
+        </a>
+        <!-- Pause -->
+        <a class="btn btn-default btn-xs">
+            <i class="fa fa-pause mx-1 fa-1.75x ctrl-btn"> </i>
+        </a>
+        <!-- Stop -->
+        <a class="btn btn-default btn-xs">
+            <i class="fa fa-stop mx-1 fa-1.75x ctrl-btn"> </i>
+        </a>
+        <!-- Eject -->
+        <a class="btn btn-default btn-xs">
+            <i class="fa fa-eject mx-1 fa-1.75x ctrl-btn"> </i>
+        </a>
+    </div>
 </nav>
 
-<div class="container text-center p-0 m-0">
+<br>
+
+<div class="container text-center p-0 m-0 mt-5">
     <div id="record-room" class="row">
-        <div class="col-lg-8 p-0 m-0">
+        <div class="col-lg-8 p-0 m-0 my-5">
             <div class="text-center m-0 p-0">
                 <img id="record-img" class="img-fluid record m-0 p-0" src="assets/images/objects/record_500.png" alt="record" class="img"> 
                 <img id="album-img" class="album-cover m-0 p-0 hvr-grow" src="assets/images/albums/hayes.jpg" alt="album cover" class="img">
@@ -65,38 +85,9 @@
             </div>
         </div>
         <div id="audio-info" class="col-lg-4 m-0 p-0">
-            
-            
-         <div class="song-input-group"> -->
-                <select class="song-custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
-                  <option selected>Choose a Genre...</option>
-                  <option value="pop">Pop</option>
-                  <option value="soul">Soul</option>
-                  <option value="country">Country</option>
-                </select>
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" id = "genre-submit" type="submit">Button</button>
-                </div>
-            </div> -->
-
-            <!-- AUDIO CONTROLS -->
-            <div class="text-center">
-                <button class="btn btn-default btn-xs" id = "play-dat">
-                    <span class="fa fa-play"></span>
-                </button>
-                <button class="btn btn-default btn-xs" id = "pause-dat">
-                    <span class="fa fa-pause"></span>
-                </button>
-                <button class="btn btn-default btn-xs" id = "stop-dat">
-                    <span class= "fa fa-stop"></span>
-                </button>
-            </div>
-
         </div>
     </div>
 
-
-    
 
 
     <div class="row front-z">
@@ -109,9 +100,6 @@
     
 
 </div>  
-
-
-
 
 
 <!--Username and Genre Modal-->

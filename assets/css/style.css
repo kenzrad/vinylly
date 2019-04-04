@@ -79,10 +79,11 @@ body {
     #record-img {
         visibility: hidden;
         position: absolute;
-        top: 38px;
-        /* left: 112.5px; */
-        left: 82px;
+        top: 46px;
+        left: 94px;
         z-index: 1;
+        width: 500px;
+        height: 500px;
     }
 
     #album-img {
@@ -95,7 +96,49 @@ body {
         height: 520px;
     }
 
+/* Hover CSS Library -- Grow/Shrink Record and Album */
+    .hvr-grow {
+        display: inline-block;
+        vertical-align: middle;
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        transition-duration: 0.3s;
+        transition-property: transform;
+    }
 
+    .hvr-grow:hover,
+    .hvr-grow:focus,
+    .hvr-grow:active {
+        transform: scale(1.1);
+    }
+
+    .hvr-grow-record {
+        display: inline-block;
+        vertical-align: middle;
+        transform: translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        backface-visibility: hidden;
+        -moz-osx-font-smoothing: grayscale;
+        transition-duration: 0.3s;
+        transition-property: transform;
+        transform: scale(1.1);
+    }
+
+    .hvr-shrink-record {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        -webkit-transition-duration: 1s;
+        transition-duration: 1s;
+        -webkit-transition-property: transform;
+        transition-property: transform;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
 
     /*player and needle and all the beautiful things*/
     #player-img {

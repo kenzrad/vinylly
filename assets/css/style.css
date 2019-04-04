@@ -44,6 +44,14 @@ body {
       animation-timing-function: linear;
   }
 
+/*container that holds record player and album view divs*/
+#record-room {
+    position: relative;
+    height: 700px
+    /* border: solid; --just for visualizing-- */
+    /* border-color: grey; --just for visualizing-- */
+    /* background-color: purple; --just for visualizing-- */
+}
 
     /* #record-img {
     -webkit-animation:spin 4s linear infinite;
@@ -163,24 +171,56 @@ body {
         z-index: 5;
     }
     
+    #event-info{
+        color: red
+    }
+/*-----------------------------------*/
 
 
 
 /*----------INFO DIVS--------------*/
 
     #band-info{
-        color:blue;
+        color:black;
         position: relative;
+        font-family: Garamond, Georgia, serif;
+    }
+    .band-bio-div{
+        background-color: yellow;
+        text-align: left;
+        padding: 50px;
+        border-radius:25%;
+        margin-left:50px
+
     }
 
     #event-info{
-        color:blue;
+        color:black;
         position: relative;
+        left:50px;
+        font-family: Garamond, Georgia, serif;
+        
+    }
+    .events-in-town{
+        background-color: yellow;
+        text-align:left;
+        padding:50px;
+        margin-left:25px;
+        border-radius: 25%;
+        
+       
+        
+    }
+    .headerr{
+        color: blue;
+        font-family: Garamond, Georgia, serif;
     }
 
     #merch-info{
-        color:blue;
+        color:black;
         position: relative;
+        
+        
     }
 
 

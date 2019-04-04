@@ -96,6 +96,17 @@
             mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
             albumArt: "assets/images/album/strait.jpg"
         },
+        rock:{
+            songName:"For What's it Worth",
+            artist: "Buffalo Springfield",
+            album : "Buffalo Springfield",
+            year: "1966",
+            length: "02:40",
+            mp3Audio:"assets/audio/Buffalo Springfield.mp3",
+            albumArt:"assets/images/album/Buffalo-Springfield.jpg"
+
+        },
+        
     };
 
     var genreInput = "";
@@ -266,7 +277,7 @@
             convertedDate = moment(spliced, format);
             bitFinalDate = convertedDate.format("MM/DD/YY");
             bitVenue = $("<p>").text("Venue: " + response[0].venue.name);
-            bitVenue.append("-" + bitFinalDate);
+            bitDate= $("<p>").text("Date: " + bitFinalDate)
 
                 //venue name, and link to tickets
             bitUpcoming_event = $("<h1>").addClass("headerr");
@@ -277,7 +288,9 @@
             bitCity = response[0].venue.city
             bitState = response[0].venue.region
             bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState)
-            bitdiv.append(bitUpcoming_event, bitVenue, bitLocation, bitTix)
+            bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix)
+            $("#event-info").empty()
+            $("#event-info").append(bitdiv)
         }); 
     };
    

@@ -70,7 +70,8 @@
             year: "2019",
             length: "03:18",
             mp3Audio: "assets/audio/Khalid-Talk.mp3",
-            albumArt: "assets/images/album/khalid.jpg"
+            albumArt: "assets/images/albums/khalid.jpg",
+            recordArt: "",
         },
         soul: {
             songName: "Walk On By",
@@ -79,7 +80,8 @@
             year: "1969",
             length: "04:34",
             mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
-            albumArt: "assets/images/albums/hayes.jpg"
+            albumArt: "assets/images/albums/hayes.jpg",
+            recordArt: "assets/images/records/hayesRecord.png",
         },
         country: {
             songName: "Check Yes or No",
@@ -88,8 +90,10 @@
             year: "1995",
             length: "03:20",
             mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
-            albumArt: "assets/images/album/strait.jpg"
+            albumArt: "assets/images/albums/strait.jpg",
+            recordArt: "assets/images/records/straitRecord.png",
         },
+<<<<<<< HEAD
         rock:{
             songName:"For What's it Worth",
             artist: "Buffalo Springfield",
@@ -101,6 +105,8 @@
 
         },
         
+=======
+>>>>>>> 6aeee099452b3fe84ec75577457b72413088127d
     };
 
     var genreInput = "";
@@ -111,7 +117,11 @@
     var songLength
 
     $("#genre-submit").on("click", function(){
+<<<<<<< HEAD
         genreInput = $('#inputGroupSelect04').val();
+=======
+        genreInput = $('#genre-input').val();
+>>>>>>> 6aeee099452b3fe84ec75577457b72413088127d
         g = genreInput
         s = music[g].mp3Audio;
         a = music[g].artist;
@@ -127,16 +137,28 @@
 
         searchEventsInTown(a);
         albumView(albumArt, recordArt);
+<<<<<<< HEAD
         resetRecord();
+=======
+        // resetRecord();
+>>>>>>> 6aeee099452b3fe84ec75577457b72413088127d
     });
 
 
     ////Audio Set-Up////
     var resetAlbum = function() {
+        console.log ("RESET BITCHES")
         $("#album-img").css("display", "none");
-        $("#album-img" ).animate({ "right": "+=600px" }, 1);
+        $("#album-img" ).animate({ "left": "+=600px" }, 1);
     };
-
+    
+    var resetRecord = function() {
+        $("#record-img").removeClass("record-spin");
+        $("#record-img").css("visibility", "hidden");
+        $("#needle-img").removeClass("needle-start"); 
+        $("#needle-img").removeClass("needle-play"); 
+        
+    };
     var songStarted = false;
 
     $("#play-dat").on("click", function(){
@@ -169,8 +191,9 @@
     })
 
     //TOGGLE ALBUM RECORD
-    var albumView = function(srcLink) {
-        $("#album-img").attr("src", srcLink);
+    var albumView = function(albumArt, recordArt) {
+        $("#album-img").attr("src", albumArt);
+        $("#record-img").attr("src", recordArt);
         $("#player-img").fadeTo(500, 0.3);
         $("#needle-img").fadeTo(500, 0.3);
         setTimeout(function() {
@@ -181,19 +204,17 @@
         }, 1400);
 
         $("#album-img").click(function(){
-            $("#player-img").css("opacity", "1");
-            $("#needle-img").css("opacity", "1");
             $("#album-img" ).animate({ "left": "-=600px" }, 2000);
+            $("#record-img").addClass("hvr-grow-record");
+            setTimeout(function() {
+                $("#record-img").addClass("hvr-shrink-record");
+                $("#record-img").removeClass("hvr-grow-record");
+                $("#player-img").css("opacity", "1");
+                $("#needle-img").css("opacity", "1");
+                resetAlbum();
+            }, 3000) 
         });
 
-    
-        console.log(srcLink);
-        // $("#album-img").click(function() {
-        // //     $("#album-img").attr("style", "visibility: show");
-        //     // $('#record-div').animate({
-        //     //     width: "toggle"
-        //     // })
-        // };
     };
 
 

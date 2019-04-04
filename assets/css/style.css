@@ -171,15 +171,17 @@ body {
         z-index: 5;
     }
     
-    #event-info{
-        color: red
-    }
+
 /*-----------------------------------*/
 
 
 
 /*----------INFO DIVS--------------*/
 
+    #event-info{
+        color: red
+    }   
+    
     #band-info{
         color:black;
         position: relative;

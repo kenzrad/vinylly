@@ -68,12 +68,6 @@
 
 
 
-
-
-
-
-
-
 ////////////////////
 /////AUDIOPHILE/////
 ////////////////////
@@ -113,32 +107,32 @@
         },
     };
 
-    var genreInput = "";
-    var audioElement = "";
-    var g = ""
-    var s = ""
-    var audioElement = "";
-    var songLength
+    // var genreInput = "";
+    // var audioElement = "";
+    // var g = ""
+    // var s = ""
+    // var audioElement = "";
+    // var songLength
 
-    $("#genre-submit").on("click", function(){
-        genreInput = $('#inputGroupSelect04').val();
-        g = genreInput
-        s = music[g].mp3Audio;
-        a = music[g].artist;
-        albumArt = music[g].albumArt;
-        recordArt = music[g].recordArt;
-        songLength = music[g].songLength;
+    // $("#genre-submit").on("click", function(){
+    //     genreInput = $('#inputGroupSelect04').val();
+    //     g = genreInput
+    //     s = music[g].mp3Audio;
+    //     a = music[g].artist;
+    //     albumArt = music[g].albumArt;
+    //     recordArt = music[g].recordArt;
+    //     songLength = music[g].songLength;
 
 
-        audioElement = document.createElement("audio");
-        audioElement.setAttribute("src", s)
-        console.log("this is: "  + g);
-        console.log("this is:" + s);
+    //     audioElement = document.createElement("audio");
+    //     audioElement.setAttribute("src", s)
+    //     console.log("this is: "  + g);
+    //     console.log("this is:" + s);
 
-        searchEventsInTown(a);
-        albumView(albumArt, recordArt);
-        resetRecord();
-    });
+    //     searchEventsInTown(a);
+    //     albumView(albumArt, recordArt);
+    //     resetRecord();
+    // });
 
 
     ////Audio Set-Up////
@@ -175,8 +169,6 @@
     })
 
     $("#pause-dat").on("click", function(){
-        audioElement.pause();
-        //look into pausig record and needle "nice to have"
         $("#record-img").removeClass("record-spin");
         $("#needle-img").addClass("needle-pause"); 
     })

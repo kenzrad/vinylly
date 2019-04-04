@@ -22,6 +22,10 @@ body {
     z-index: 5;
 }
 
+.ctrl-btn {
+    color: grey;
+}
+
 
 /*----------RECORD MOVE---------------*/
   @keyframes rotate {

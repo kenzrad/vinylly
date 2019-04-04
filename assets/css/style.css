@@ -40,6 +40,14 @@ body {
       animation-timing-function: linear;
   }
 
+/*container that holds record player and album view divs*/
+#record-room {
+    position: relative;
+    height: 700px
+    /* border: solid; --just for visualizing-- */
+    /* border-color: grey; --just for visualizing-- */
+    /* background-color: purple; --just for visualizing-- */
+}
 
     /* #record-img {
     -webkit-animation:spin 4s linear infinite;
@@ -159,6 +167,10 @@ body {
         z-index: 5;
     }
     
+    #event-info{
+        color: red
+    }
+/*-----------------------------------*/
 
 
 

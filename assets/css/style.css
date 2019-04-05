@@ -183,7 +183,7 @@ body {
     }
 
     #event-info{
-        color: red
+        color: rgb(243, 174, 26)
     }   
 
     #band-info{
@@ -192,32 +192,35 @@ body {
         font-family: Garamond, Georgia, serif;
     }
     .band-bio-div{
-        background-color: yellow;
-        text-align: left;
-        padding: 50px;
-        border-radius:25%;
-        margin-left:50px
+        background-color: lightgrey;
+        text-align: justify;
+        padding: 25px;
+        border-radius: 8%;
+        margin-left: 50px;
+        link:
 
     }
 
     #event-info{
-        color:black;
+        color: black;
         position: relative;
-        left:50px;
+        left: 50px;
         font-family: Garamond, Georgia, serif;
         
     }
     .events-in-town{
-        background-color: yellow;
-        text-align:left;
-        padding:50px;
-        margin-left:25px;
-        border-radius: 25%;
+        background-color: lightgrey;
+        text-align: justify;
+        padding: 25px;
+        margin-left: 25px;
+        border-radius: 8%;
         
     }
     .headerr{
-        color: blue;
+        color: black;
         font-family: Garamond, Georgia, serif;
+        text-align: justify;
+        letter-spacing: 0.2em;
     }
 
     #merch-info{

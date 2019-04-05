@@ -48,167 +48,224 @@
         });
 
         $("#name-display").text(`${userName}`);
-        $("#genre-display").text(`Current Genre: ${genre}`)
+        $("#genre-display").text(`${genre}`)
 
     });
-//
-
-
-
 
 ////////////////////
 /////AUDIOPHILE/////
 ////////////////////
 
+function Song(song, artist, album, genre, year, length, recordArt, albumArt, mp3Audio){
+    this.song = song;
+    this.artist = artist;
+    this.album = album;
+    this.genre = genre;
+    this.year = year;
+    this.length = length;
+    this.recordArt = recordArt;
+    this.albumArt = albumArt;
+    this.mp3Audio = mp3Audio;
+}
+
+
+var songs = [];
+songs.push(new Song('Talk', 'Khalid', 'Free Spirit', 'pop', '2019', '3:18', 'assets/images/records/smithRecord.png', 'assets/images/albums/khalid.jpg', 'assets/audio/Khalid-Talk.mp3'));
+songs.push(new Song('Talk', 'Randy Travis', 'Free Spirit', 'country', '2019', '3:18', 'x', 'x', 'assets/audio/Khalid-Talk.mp3'));
+
+var genreInput = "";
+var audioLink = "";
+var audioElement;
+var albumArt;
+var recordArt;
+var songLength;
+var artist;
+var albumName;
+var songTitle;
+
+//Something is happening where the genre is selected on document load, before the user even selects anything -- need to figure out how to reset to null on document load
+database.ref("/vinylly").on("child_added", function(childSnapshot) {
+    if (childSnapshot.child("genre").exists()){
+        genreInput = childSnapshot.val().genre;
+        var foundSong = songs.find(function(song) {
+            return song.genre === genreInput;
+        });
+
+        if(foundSong) {
+            audioLink = foundSong.mp3Audio;
+            audioElement = document.createElement("audio");
+            audioElement.setAttribute("src", audioLink);
+            artist = foundSong.artist;
+            albumArt = foundSong.albumArt;
+            recordArt = foundSong.recordArt;
+            albumName = foundSong.album;
+            songTitle = foundSong.song;
+            songLength = moment.duration(foundSong.length).asMilliseconds();
+            searchBandBio(artist) 
+            searchEventsInTown(artist)
+
+            albumView(albumArt, recordArt);
+            resetRecord();
+        }
+        console.log(foundSong);
+        console.log("sup " + genreInput)                 
+    }
+    else {
+        //append text of "Please chose a genre that is in our very limited [but fabulous] database"
+        $("#bit-modal").modal("show"); 
+    }  
+});
+
+    
+
+console.log(audioElement)
+
+ 
+
 
     ////SONG INFORMATION////
-    var music = {
-        pop: {
-            songName: "Talk",
-            artist: "Khalid",
-            album: "Free Spirit",
-            year: "2019",
-            length: "00:03:18",
-            mp3Audio: "assets/audio/Khalid-Talk.mp3",
-            albumArt: "assets/images/albums/khalid.jpg",
-            recordArt: "assets/images/records/smithRecord.png",
-        },
-        soul: {
-            songName: "Walk On By",
-            artist: "Isaac Hayes",
-            album: "Hot Buttered Soul",
-            year: "1969",
-            length: "00:04:34",
-            mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
-            albumArt: "assets/images/albums/hayes.jpg",
-            recordArt: "assets/images/records/hayesRecord.png",
-        },
-        country: {
-            songName: "Check Yes or No",
-            artist: "George Strait",
-            album: "Strait Out of the Box",
-            year: "1995",
-            length: "00:03:20",
-            mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
-            albumArt: "assets/images/albums/strait.jpg",
-            recordArt: "assets/images/records/straitRecord.png",
-        },
+    // var music = {
+    //     pop: {
+    //         songName: "Talk",
+    //         artist: "Khalid",
+    //         album: "Free Spirit",
+    //         year: "2019",
+    //         length: "00:03:18",
+    //         mp3Audio: "assets/audio/Khalid-Talk.mp3",
+    //         albumArt: "assets/images/albums/khalid.jpg",
+    //         recordArt: "assets/images/records/smithRecord.png",
+    //     },
+    //     soul: {
+    //         songName: "Walk On By",
+    //         artist: "Isaac Hayes",
+    //         album: "Hot Buttered Soul",
+    //         year: "1969",
+    //         length: "00:04:34",
+    //         mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
+    //         albumArt: "assets/images/albums/hayes.jpg",
+    //         recordArt: "assets/images/records/hayesRecord.png",
+    //     },
+    //     country: {
+    //         songName: "Check Yes or No",
+    //         artist: "George Strait",
+    //         album: "Strait Out of the Box",
+    //         year: "1995",
+    //         length: "00:03:20",
+    //         mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
+    //         albumArt: "assets/images/albums/strait.jpg",
+    //         recordArt: "assets/images/records/straitRecord.png",
+    //     },
 
-        rock:{
-            songName:"For What's it Worth",
-            artist: "Buffalo Springfield",
-            album : "Buffalo Springfield",
-            year: "1966",
-            length: "00:02:40",
-            mp3Audio:"assets/audio/Buffalo Springfield.mp3",
-            albumArt:"assets/images/album/Buffalo-Springfield.jpg",
+    //     rock:{
+    //         songName:"For What's it Worth",
+    //         artist: "Buffalo Springfield",
+    //         album : "Buffalo Springfield",
+    //         year: "1966",
+    //         length: "00:02:40",
+    //         mp3Audio:"assets/audio/Buffalo Springfield.mp3",
+    //         albumArt:"assets/images/album/Buffalo-Springfield.jpg",
+    //         recordArt:"assets/images/records/pinkRecord.png"
 
-        },
-        blues:{
-            songName:"The Thrill is Gone",
-            artist: "B.B. King",
-            album:"Completely Well",
-            year:"1969",
-            length:"00:05:29",
-            mp3Audio:"assets/audio/The-Thrill-is-Gone.mp3",
-            albumArt:"assets/images/album/B-B-King.jpg",
-        },
-        rap:{
-            songName:"C.R.E.A.M",
-            artist: "Wu-Tang Clan",
-            album:"Enter the Wu-Tang",
-            year:"1993",
-            length:"00:04:01",
-            mp3Audio:"assets/audio/cream.mp3",
-            albumArt:"assets/images/album/cream.jpg",
-        },
-        hip_hop:{
-            songName:"Electric Relaxation",
-            artist: "A Tribe Called Quest",
-            album:"Midnight Marauders",
-            year:"1993",
-            length: "00:03:46",
-            mp3Audio:"assets/audio/electric_relaxation.mp3",
-            albumArt:"assets/images/tribe.jpg",
-        },
-        ragae:{
+    //     },
+    //     blues:{
+    //         songName:"The Thrill is Gone",
+    //         artist: "B.B. King",
+    //         album:"Completely Well",
+    //         year:"1969",
+    //         length:"00:05:29",
+    //         mp3Audio:"assets/audio/The-Thrill-is-Gone.mp3",
+    //         albumArt:"assets/images/album/B-B-King.jpg",
+    //         recordArt:"assets/images/records/moodyRecord.png"
+    //     },
+    //     rap:{
+    //         songName:"C.R.E.A.M",
+    //         artist: "Wu-Tang Clan",
+    //         album:"Enter the Wu-Tang",
+    //         year:"1993",
+    //         length:"00:04:01",
+    //         mp3Audio:"assets/audio/cream.mp3",
+    //         albumArt:"assets/images/album/cream.jpg",
+    //         recordArt:"assets/images/records/tyedyeRecord.png"
+    //     },
+    //     hip_hop:{
+    //         songName:"Electric Relaxation",
+    //         artist: "A Tribe Called Quest",
+    //         album:"Midnight Marauders",
+    //         year:"1993",
+    //         length: "00:03:46",
+    //         mp3Audio:"assets/audio/electric_relaxation.mp3",
+    //         albumArt:"assets/images/albums/tribe.jpg",
+    //         recordArt:"assets/images/records/xmasRecord.png"
+    //     },
+    //     ragae:{
             
-        },
-        psychedelic: {
-            songName: "Pow R. Toc H.",
-            artist: "Pink Floyd",
-            album: "The Piper at the Gates of Dawn",
-            year: "1967",
-            length: "00:04:26",
-            mp3Audio: "assets/audio/Pow R. Toc. H.mp3",
-            albumArt: "assets/images/albums/floyd.jpg",
-            recordArt: "assets/images/records/smithRecord.png",
-        },
-        metal: {
-            songName: "Blame It On God",
-            artist: "Deicide",
-            album: "Serpants of the Light",
-            year: "1997",
-            length: "00:02:44",
-            mp3Audio: "assets/audio/Deicide - Blame it on God(lyrics).mp3",
-            albumArt: "assets/images/albums/deicide.jpg",
-            recordArt: "assets/images/records/maroonRecord.png",
-        },
-        alternative: {
-            songName: "Hummer",
-            artist: "Smashing Pumpkins",
-            album: "Siamese Dream",
-            year: "1993",
-            length: "00:06:57",
-            mp3Audio: "assets/audio/The Smashing Pumpkins - Siamese Dream - Hummer.mp3",
-            albumArt: "assets/images/albums/pumpkins.jpg",
-            recordArt: "assets/images/records/candyRecord.png",
-        },
-        jazz: {
-            songName: "Easy Living",
-            artist: "Billie Holiday",
-            album: "Easy Living (Single)",
-            year: "1937",
-            length: "00:03:04",
-            mp3Audio: "assets/audio/#.mp3",
-            albumArt: "assets/images/albums/billie.jpg",
-            recordArt: "assets/images/records/purpleRecord.png",
-        },
+    //     },
+    //     psychedelic: {
+    //         songName: "Pow R. Toc H.",
+    //         artist: "Pink Floyd",
+    //         album: "The Piper at the Gates of Dawn",
+    //         year: "1967",
+    //         length: "00:04:26",
+    //         mp3Audio: "assets/audio/Pow R. Toc. H.mp3",
+    //         albumArt: "assets/images/albums/floyd.jpg",
+    //         recordArt: "assets/images/records/smithRecord.png",
+    //     },
+    //     metal: {
+    //         songName: "Blame It On God",
+    //         artist: "Deicide",
+    //         album: "Serpants of the Light",
+    //         year: "1997",
+    //         length: "00:02:44",
+    //         mp3Audio: "assets/audio/Deicide - Blame it on God(lyrics).mp3",
+    //         albumArt: "assets/images/albums/deicide.jpg",
+    //         recordArt: "assets/images/records/maroonRecord.png",
+    //     },
+    //     alternative: {
+    //         songName: "Hummer",
+    //         artist: "Smashing Pumpkins",
+    //         album: "Siamese Dream",
+    //         year: "1993",
+    //         length: "00:06:57",
+    //         mp3Audio: "assets/audio/The Smashing Pumpkins - Siamese Dream - Hummer.mp3",
+    //         albumArt: "assets/images/albums/pumpkins.jpg",
+    //         recordArt: "assets/images/records/candyRecord.png",
+    //     },
+    //     jazz: {
+    //         songName: "Easy Living",
+    //         artist: "Billie Holiday",
+    //         album: "Easy Living (Single)",
+    //         year: "1937",
+    //         length: "00:03:04",
+    //         mp3Audio: "assets/audio/#.mp3",
+    //         albumArt: "assets/images/albums/billie.jpg",
+    //         recordArt: "assets/images/records/purpleRecord.png",
+    //     },
 
-    };
-    var MillConversion = moment.duration().asMilliseconds();
+    // };
+    // var MillConversion = moment.duration().asMilliseconds();
 
-    var genreInput = "";
-    var audioElement = "";
-    var g = ""
-    var s = ""
-    var audioElement = "";
-    var songLength;
-
-    $("#genre-submit").on("click", function(){
-        genreInput = $('#inputGroupSelect04').val();
-        genreInput = $('#genre-input').val();
-        g = genreInput
-        s = music[g].mp3Audio;
-        a = music[g].artist;
-        albumArt = music[g].albumArt;
-        recordArt = music[g].recordArt;
-        songLength = moment.duration(music[g].length).asMilliseconds();
+   
+    // $("#genre-submit").on("click", function(){
+    //     genreInput = $('#inputGroupSelect04').val();
+    //     genreInput = $('#genre-input').val();
+    //     g = genreInput
+    //     s = music[g].mp3Audio;
+    //     a = music[g].artist;
+    //     albumArt = music[g].albumArt;
+    //     recordArt = music[g].recordArt;
+    //     songLength = moment.duration(music[g].length).asMilliseconds();
        
-        searchBandBio(a) 
-        searchEventsInTown(a)
+    //     searchBandBio(a) 
+    //     searchEventsInTown(a)
      
-        audioElement = document.createElement("audio");
-        audioElement.setAttribute("src", s)
-        console.log("this is: "  + g);
-        console.log("this is:" + s);
+        
 
         
         
-        albumView(albumArt, recordArt);
-        resetRecord();
-        // resetRecord();
-    });
+    //     albumView(albumArt, recordArt);
+    //     resetRecord();
+    //     // resetRecord();
+    // });
 
 
     ////Audio Set-Up////
@@ -224,6 +281,8 @@
         $("#needle-img").removeClass("needle-start"); 
         $("#needle-img").removeClass("needle-play"); 
     };
+
+
 
     var albumInfo = function() {
         var currentArtist = $("<h1").addClass("album-info-div");
@@ -244,7 +303,7 @@
                 $("#needle-img").addClass("needle-play"); 
             }, 1000);
         }
-    })
+    });
 
     $("#pause-dat").on("click", function(){
         audioElement.pause();
@@ -252,7 +311,8 @@
         $("#record-img").removeClass("record-spin");
         $("#needle-img").removeClass("needle-start"); 
         $("#needle-img").removeClass("needle-play"); 
-    })
+    });
+
 
     $("#stop-dat").on("click", function(){
         audioElement.pause();
@@ -260,7 +320,7 @@
         $("#record-img").removeClass("record-spin");
         $("#needle-img").removeClass("needle-start"); 
         $("#needle-img").removeClass("needle-play"); 
-    })
+    });
 
     $("#eject-dat").on("click", function (){
         audioElement.pause();
@@ -273,7 +333,7 @@
         setTimeout(function() {
             $("#album-img" ).animate({ "left": "-=600px" }, 2000);
         },3000)
-    })
+    });
 
     //TOGGLE ALBUM RECORD
     var albumView = function(albumArt, recordArt) {
@@ -305,15 +365,9 @@
             }, 3000) 
             albumInfo();
         });
-
     };
+    
 
-
-
-
-
-
-//
 
 ////////////////////
 ///////BIO//////////
@@ -433,5 +487,7 @@ $("#bio-li").on("click", function() {
     }
     
 });
+
+$(document).ready($("#bit-modal").modal("show")); 
 
 

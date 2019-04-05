@@ -68,7 +68,7 @@
             artist: "Khalid",
             album: "Free Spirit",
             year: "2019",
-            length: "03:18",
+            length: "00:03:18",
             mp3Audio: "assets/audio/Khalid-Talk.mp3",
             albumArt: "assets/images/albums/khalid.jpg",
             recordArt: "assets/images/records/smithRecord.png",
@@ -78,7 +78,7 @@
             artist: "Isaac Hayes",
             album: "Hot Buttered Soul",
             year: "1969",
-            length: "04:34",
+            length: "00:04:34",
             mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
             albumArt: "assets/images/albums/hayes.jpg",
             recordArt: "assets/images/records/hayesRecord.png",
@@ -88,7 +88,7 @@
             artist: "George Strait",
             album: "Strait Out of the Box",
             year: "1995",
-            length: "03:20",
+            length: "00:03:20",
             mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
             albumArt: "assets/images/albums/strait.jpg",
             recordArt: "assets/images/records/straitRecord.png",
@@ -98,7 +98,7 @@
             artist: "Pink Floyd",
             album: "The Piper at the Gates of Dawn",
             year: "1967",
-            length: "04:26",
+            length: "00:04:26",
             mp3Audio: "assets/audio/Pow R. Toc. H.mp3",
             albumArt: "assets/images/albums/floyd.jpg",
             recordArt: "assets/images/records/smithRecord.png",
@@ -108,7 +108,7 @@
             artist: "Deicide",
             album: "Serpants of the Light",
             year: "1997",
-            length: "02:44",
+            length: "00:02:44",
             mp3Audio: "assets/audio/Deicide - Blame it on God(lyrics).mp3",
             albumArt: "assets/images/albums/deicide.jpg",
             recordArt: "assets/images/records/maroonRecord.png",
@@ -118,7 +118,7 @@
             artist: "Smashing Pumpkins",
             album: "Siamese Dream",
             year: "1993",
-            length: "06:57",
+            length: "00:06:57",
             mp3Audio: "assets/audio/The Smashing Pumpkins - Siamese Dream - Hummer.mp3",
             albumArt: "assets/images/albums/pumpkins.jpg",
             recordArt: "assets/images/records/candyRecord.png",
@@ -128,7 +128,7 @@
             artist: "Billie Holiday",
             album: "Easy Living (Single)",
             year: "1937",
-            length: "03:04",
+            length: "00:03:04",
             mp3Audio: "assets/audio/#.mp3",
             albumArt: "assets/images/albums/billie.jpg",
             recordArt: "assets/images/records/purpleRecord.png",
@@ -140,7 +140,7 @@
     var g = ""
     var s = ""
     var audioElement = "";
-    var songLength
+    var songLength;
 
     $("#genre-submit").on("click", function(){
         genreInput = $('#genre-input').val();
@@ -149,7 +149,7 @@
         a = music[g].artist;
         albumArt = music[g].albumArt;
         recordArt = music[g].recordArt;
-        songLength = music[g].songLength;
+        songLength = moment.duration(music[g].length).asMilliseconds();
 
 
         audioElement = document.createElement("audio");
@@ -175,6 +175,12 @@
         $("#record-img").css("visibility", "hidden");
         $("#needle-img").removeClass("needle-start"); 
         $("#needle-img").removeClass("needle-play"); 
+    };
+
+    var albumInfo = function() {
+        var currentArtist = $("<h1").addClass("album-info-div");
+        currentArtist.text(`Artist: ${a}`);
+        $("#audio-info").append(currentArtist);
     };
 
     var albumReset = true;
@@ -249,6 +255,7 @@
                 $("#player-img").css("opacity", "1");
                 $("#needle-img").css("opacity", "1");
             }, 3000) 
+            albumInfo();
         });
 
     };

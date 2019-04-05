@@ -75,7 +75,7 @@ body {
   }
 
   .needle-play {
-    transition: 5s linear;
+    transition: 180s linear;
     display: inline-block;
     transform-origin: 50% 50%;
     transform: rotate(35deg);
@@ -178,10 +178,14 @@ body {
 
 /*----------INFO DIVS--------------*/
 
+    .album-info-div {
+        color: grey;
+    }
+
     #event-info{
         color: red
     }   
-    
+
     #band-info{
         color:black;
         position: relative;
@@ -210,14 +214,16 @@ body {
         margin-left:25px;
         border-radius: 25%;
         
-       
-        
     }
     .headerr{
         color: blue;
         font-family: Garamond, Georgia, serif;
     }
 
+    #merch-info{
+        color:black;
+        position: relative; 
+    }
     
     
 

@@ -93,6 +93,47 @@
             albumArt: "assets/images/albums/strait.jpg",
             recordArt: "assets/images/records/straitRecord.png",
         },
+
+        rock:{
+            songName:"For What's it Worth",
+            artist: "Buffalo Springfield",
+            album : "Buffalo Springfield",
+            year: "1966",
+            length: "00:02:40",
+            mp3Audio:"assets/audio/Buffalo Springfield.mp3",
+            albumArt:"assets/images/album/Buffalo-Springfield.jpg",
+
+        },
+        blues:{
+            songName:"The Thrill is Gone",
+            artist: "B.B. King",
+            album:"Completely Well",
+            year:"1969",
+            length:"00:05:29",
+            mp3Audio:"assets/audio/The-Thrill-is-Gone.mp3",
+            albumArt:"assets/images/album/B-B-King.jpg",
+        },
+        rap:{
+            songName:"C.R.E.A.M",
+            artist: "Wu-Tang Clan",
+            album:"Enter the Wu-Tang",
+            year:"1993",
+            length:"00:04:01",
+            mp3Audio:"assets/audio/cream.mp3",
+            albumArt:"assets/images/album/cream.jpg",
+        },
+        hip_hop:{
+            songName:"Electric Relaxation",
+            artist: "A Tribe Called Quest",
+            album:"Midnight Marauders",
+            year:"1993",
+            length: "00:03:46",
+            mp3Audio:"assets/audio/electric_relaxation.mp3",
+            albumArt:"assets/images/tribe.jpg",
+        },
+        ragae:{
+            
+        },
         psychedelic: {
             songName: "Pow R. Toc H.",
             artist: "Pink Floyd",
@@ -133,7 +174,9 @@
             albumArt: "assets/images/albums/billie.jpg",
             recordArt: "assets/images/records/purpleRecord.png",
         },
+
     };
+    var MillConversion = moment.duration().asMilliseconds();
 
     var genreInput = "";
     var audioElement = "";
@@ -143,6 +186,7 @@
     var songLength;
 
     $("#genre-submit").on("click", function(){
+        genreInput = $('#inputGroupSelect04').val();
         genreInput = $('#genre-input').val();
         g = genreInput
         s = music[g].mp3Audio;
@@ -150,15 +194,19 @@
         albumArt = music[g].albumArt;
         recordArt = music[g].recordArt;
         songLength = moment.duration(music[g].length).asMilliseconds();
-
-
+       
+        searchBandBio(a) 
+        searchEventsInTown(a)
+     
         audioElement = document.createElement("audio");
         audioElement.setAttribute("src", s)
         console.log("this is: "  + g);
         console.log("this is:" + s);
 
-        searchEventsInTown(a);
+        
+        
         albumView(albumArt, recordArt);
+        resetRecord();
         // resetRecord();
     });
 
@@ -281,6 +329,7 @@
             method: "GET"
         })
             .then(function (response) {
+                bitReady = true;
                 fmArtist = $("<h1>").addClass("headerr")
                 fmArtist.text(response.artist.name)
                 console.log(fmArtist)
@@ -289,6 +338,7 @@
                 fmdiv.append(fmArtist, fmSumm)
                 $("#band-info").empty()
                 $("#band-info").append(fmdiv)
+           
             });
     };
 
@@ -337,7 +387,7 @@
             convertedDate = moment(spliced, format);
             bitFinalDate = convertedDate.format("MM/DD/YY");
             bitVenue = $("<p>").text("Venue: " + response[0].venue.name);
-            bitVenue.append("-" + bitFinalDate);
+            bitDate= $("<p>").text("Date: " + bitFinalDate)
 
                 //venue name, and link to tickets
             bitUpcoming_event = $("<h1>").addClass("headerr");
@@ -348,10 +398,14 @@
             bitCity = response[0].venue.city
             bitState = response[0].venue.region
             bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState)
-            bitdiv.append(bitUpcoming_event, bitVenue, bitLocation, bitTix)
+            bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix)
+            $("#event-info").empty()
+            $("#event-info").append(bitdiv)
+            
         }); 
     };
    
+    //event button//
 
     $("#event-li").on("click", function() {
         if (bitReady) {
@@ -361,8 +415,23 @@
         }
         else {
             $("#bit-modal").modal("show");  
+            
         }
     });
-//
+
+
+//bio button//
+$("#bio-li").on("click", function() {
+    if (bitReady) {
+        console.log("bit ready!")
+        $("#band-info").empty()
+        $("#band-info").append(fmdiv)
+    }
+    else  {
+        $("#bit-modal").modal("show"); 
+         
+    }
+    
+});
 
 

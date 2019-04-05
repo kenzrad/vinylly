@@ -101,7 +101,7 @@
             year: "1966",
             length: "00:02:40",
             mp3Audio:"assets/audio/Buffalo Springfield.mp3",
-            albumArt:"assets/images/album/Buffalo-Springfield.jpg",
+            albumArt:"assets/images/albums/Buffalo-Springfield.jpg",
 
         },
         blues:{
@@ -111,7 +111,7 @@
             year:"1969",
             length:"00:05:29",
             mp3Audio:"assets/audio/The-Thrill-is-Gone.mp3",
-            albumArt:"assets/images/album/B-B-King.jpg",
+            albumArt:"assets/images/albums/B-B-King.jpg",
         },
         rap:{
             songName:"C.R.E.A.M",
@@ -120,7 +120,7 @@
             year:"1993",
             length:"00:04:01",
             mp3Audio:"assets/audio/cream.mp3",
-            albumArt:"assets/images/album/cream.jpg",
+            albumArt:"assets/images/albums/cream.jpg",
         },
         hip_hop:{
             songName:"Electric Relaxation",
@@ -129,7 +129,7 @@
             year:"1993",
             length: "00:03:46",
             mp3Audio:"assets/audio/electric_relaxation.mp3",
-            albumArt:"assets/images/tribe.jpg",
+            albumArt:"assets/images/albums/tribe.jpg",
         },
         ragae:{
             songName:"Legalize It",
@@ -138,7 +138,7 @@
             year:"1976",
             length:"00:04:46",
             mp3Audio:"assets/audio/Peter_tosh.mp3",
-            albumArt:"assets/images/peter_tosh.jpg"
+            albumArt:"assets/images/albums/peter_tosh.jpg"
         
         },
         psychedelic: {
@@ -195,7 +195,7 @@
     $("#genre-submit").on("click", function(){
         genreInput = $('#inputGroupSelect04').val();
         genreInput = $('#genre-input').val();
-        g = genreInput
+        g = genreInput;
         s = music[g].mp3Audio;
         a = music[g].artist;
         albumArt = music[g].albumArt;
@@ -337,14 +337,14 @@
         })
             .then(function (response) {
                 bitReady = true;
-                fmArtist = $("<h1>").addClass("headerr")
-                fmArtist.text(response.artist.name)
-                console.log(fmArtist)
-                fmSumm = response.artist.bio.summary
-                fmdiv = $("<div>").addClass("band-bio-div")
-                fmdiv.append(fmArtist, fmSumm)
-                $("#band-info").empty()
-                $("#band-info").append(fmdiv)
+                fmArtist = $("<h1>").addClass("headerr");
+                fmArtist.text(response.artist.name);
+                console.log(fmArtist);
+                fmSumm = response.artist.bio.summary;
+                fmdiv = $("<div>").addClass("band-bio-div");
+                fmdiv.append(fmArtist, fmSumm);
+                $("#band-info").empty();
+                $("#band-info").append(fmdiv);
            
             });
     };
@@ -394,7 +394,7 @@
             convertedDate = moment(spliced, format);
             bitFinalDate = convertedDate.format("MM/DD/YY");
             bitVenue = $("<p>").text("Venue: " + response[0].venue.name);
-            bitDate= $("<p>").text("Date: " + bitFinalDate)
+            bitDate= $("<p>").text("Date: " + bitFinalDate);
 
                 //venue name, and link to tickets
             bitUpcoming_event = $("<h1>").addClass("headerr");
@@ -402,12 +402,12 @@
             bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!");
 
             //location of event
-            bitCity = response[0].venue.city
-            bitState = response[0].venue.region
-            bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState)
-            bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix)
-            $("#event-info").empty()
-            $("#event-info").append(bitdiv)
+            bitCity = response[0].venue.city;
+            bitState = response[0].venue.region;
+            bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState);
+            bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix);
+            $("#event-info").empty();
+            $("#event-info").append(bitdiv);
             
         }); 
     };

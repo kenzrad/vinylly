@@ -483,4 +483,6 @@ $("#bio-li").on("click", function() {
     
 });
 
+$(document).ready($("#bit-modal").modal("show")); 
+
 

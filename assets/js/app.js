@@ -110,7 +110,8 @@ database.ref("/vinylly").on("child_added", function(childSnapshot) {
         console.log("sup " + genreInput)                 
     }
     else {
-        $("#bit-modal").modal("hide"); 
+        //append text of "Please chose a genre that is in our very limited [but fabulous] database"
+        $("#bit-modal").modal("show"); 
     }  
 });
 

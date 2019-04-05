@@ -163,6 +163,7 @@ console.log(audioElement)
     //         length: "00:02:40",
     //         mp3Audio:"assets/audio/Buffalo Springfield.mp3",
     //         albumArt:"assets/images/album/Buffalo-Springfield.jpg",
+    //         recordArt:"assets/images/records/pinkRecord.png"
 
     //     },
     //     blues:{
@@ -173,6 +174,7 @@ console.log(audioElement)
     //         length:"00:05:29",
     //         mp3Audio:"assets/audio/The-Thrill-is-Gone.mp3",
     //         albumArt:"assets/images/album/B-B-King.jpg",
+    //         recordArt:"assets/images/records/moodyRecord.png"
     //     },
     //     rap:{
     //         songName:"C.R.E.A.M",
@@ -182,6 +184,7 @@ console.log(audioElement)
     //         length:"00:04:01",
     //         mp3Audio:"assets/audio/cream.mp3",
     //         albumArt:"assets/images/album/cream.jpg",
+    //         recordArt:"assets/images/records/tyedyeRecord.png"
     //     },
     //     hip_hop:{
     //         songName:"Electric Relaxation",
@@ -190,7 +193,8 @@ console.log(audioElement)
     //         year:"1993",
     //         length: "00:03:46",
     //         mp3Audio:"assets/audio/electric_relaxation.mp3",
-    //         albumArt:"assets/images/tribe.jpg",
+    //         albumArt:"assets/images/albums/tribe.jpg",
+    //         recordArt:"assets/images/records/xmasRecord.png"
     //     },
     //     ragae:{
             

@@ -71,7 +71,7 @@
             length: "03:18",
             mp3Audio: "assets/audio/Khalid-Talk.mp3",
             albumArt: "assets/images/albums/khalid.jpg",
-            recordArt: "",
+            recordArt: "assets/images/records/smithRecord.png",
         },
         soul: {
             songName: "Walk On By",
@@ -92,6 +92,46 @@
             mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
             albumArt: "assets/images/albums/strait.jpg",
             recordArt: "assets/images/records/straitRecord.png",
+        },
+        psychedelic: {
+            songName: "Pow R. Toc H.",
+            artist: "Pink Floyd",
+            album: "The Piper at the Gates of Dawn",
+            year: "1967",
+            length: "04:26",
+            mp3Audio: "assets/audio/Pow R. Toc. H.mp3",
+            albumArt: "assets/images/albums/floyd.jpg",
+            recordArt: "assets/images/records/smithRecord.png",
+        },
+        metal: {
+            songName: "Blame It On God",
+            artist: "Deicide",
+            album: "Serpants of the Light",
+            year: "1997",
+            length: "02:44",
+            mp3Audio: "assets/audio/Deicide - Blame it on God(lyrics).mp3",
+            albumArt: "assets/images/albums/deicide.jpg",
+            recordArt: "assets/images/records/maroonRecord.png",
+        },
+        alternative: {
+            songName: "Hummer",
+            artist: "Smashing Pumpkins",
+            album: "Siamese Dream",
+            year: "1993",
+            length: "06:57",
+            mp3Audio: "assets/audio/The Smashing Pumpkins - Siamese Dream - Hummer.mp3",
+            albumArt: "assets/images/albums/pumpkins.jpg",
+            recordArt: "assets/images/records/candyRecord.png",
+        },
+        jazz: {
+            songName: "Easy Living",
+            artist: "Billie Holiday",
+            album: "Easy Living (Single)",
+            year: "1937",
+            length: "03:04",
+            mp3Audio: "assets/audio/#.mp3",
+            albumArt: "assets/images/albums/billie.jpg",
+            recordArt: "assets/images/records/purpleRecord.png",
         },
     };
 
@@ -129,47 +169,65 @@
         $("#album-img").css("display", "none");
         $("#album-img" ).animate({ "left": "+=600px" }, 1);
     };
-    
+
     var resetRecord = function() {
         $("#record-img").removeClass("record-spin");
         $("#record-img").css("visibility", "hidden");
         $("#needle-img").removeClass("needle-start"); 
         $("#needle-img").removeClass("needle-play"); 
-        
     };
+
+    var albumReset = true;
     var songStarted = false;
 
     $("#play-dat").on("click", function(){
-        resetAlbum();
-        audioElement.play();
-        if (songStarted) {
-            $("#record-img").addClass("record-spin");
-        }
-        else {
+        if (songStarted === false) {
+            audioElement.play();
             songStarted = true;
             $("#record-img").addClass("record-spin");
             $("#needle-img").addClass("needle-start")
             setTimeout(function() {
                 $("#needle-img").addClass("needle-play"); 
             }, 1000);
-            
         }
     })
 
     $("#pause-dat").on("click", function(){
-        $("#record-img").removeClass("record-spin");
-        $("#needle-img").addClass("needle-pause"); 
-    })
-
-    $("#stop-dat").on("click", function (){
         audioElement.pause();
+        songStarted = false;
         $("#record-img").removeClass("record-spin");
         $("#needle-img").removeClass("needle-start"); 
         $("#needle-img").removeClass("needle-play"); 
     })
 
+    $("#stop-dat").on("click", function(){
+        audioElement.pause();
+        songStarted = false;
+        $("#record-img").removeClass("record-spin");
+        $("#needle-img").removeClass("needle-start"); 
+        $("#needle-img").removeClass("needle-play"); 
+    })
+
+    $("#eject-dat").on("click", function (){
+        audioElement.pause();
+        songStarted = false;
+        $("#album-img").css("display", "inline");
+        $("#album-img" ).animate({ "left": "+=600px" }, 2000);
+        setTimeout(function() {
+            resetRecord();
+        },2100)
+        setTimeout(function() {
+            $("#album-img" ).animate({ "left": "-=600px" }, 2000);
+        },3000)
+    })
+
     //TOGGLE ALBUM RECORD
     var albumView = function(albumArt, recordArt) {
+        if(albumReset === false) {
+            resetAlbum();
+            albumReset = true;
+        };
+        $("#record-img").css("visibility", "hidden");
         $("#album-img").attr("src", albumArt);
         $("#record-img").attr("src", recordArt);
         $("#player-img").fadeTo(500, 0.3);
@@ -183,13 +241,13 @@
 
         $("#album-img").click(function(){
             $("#album-img" ).animate({ "left": "-=600px" }, 2000);
+            albumReset = false;
             $("#record-img").addClass("hvr-grow-record");
             setTimeout(function() {
                 $("#record-img").addClass("hvr-shrink-record");
                 $("#record-img").removeClass("hvr-grow-record");
                 $("#player-img").css("opacity", "1");
                 $("#needle-img").css("opacity", "1");
-                resetAlbum();
             }, 3000) 
         });
 

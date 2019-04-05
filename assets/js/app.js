@@ -83,6 +83,7 @@ var artist;
 var albumName;
 var songTitle;
 
+//Something is happening where the genre is selected on document load, before the user even selects anything -- need to figure out how to reset to null on document load
 database.ref("/vinylly").on("child_added", function(childSnapshot) {
     if (childSnapshot.child("genre").exists()){
         genreInput = childSnapshot.val().genre;

@@ -93,6 +93,7 @@
             albumArt: "assets/images/albums/strait.jpg",
             recordArt: "assets/images/records/straitRecord.png",
         },
+
         rock:{
             songName:"For What's it Worth",
             artist: "Buffalo Springfield",
@@ -139,6 +140,10 @@
             mp3Audio:"assets/audio/Peter_tosh.mp3",
             albumArt:"assets/images/peter_tosh.jpg"
         },
+            
+        
+
+        
 
         psychedelic: {
             songName: "Pow R. Toc H.",
@@ -180,6 +185,7 @@
             albumArt: "assets/images/albums/billie.jpg",
             recordArt: "assets/images/records/purpleRecord.png",
         },
+
     };
     var MillConversion = moment.duration().asMilliseconds();
 

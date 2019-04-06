@@ -197,14 +197,13 @@ body {
         padding: 25px;
         border-radius: 8%;
         margin-left: 50px;
-        link:
+        
 
     }
 
     #event-info{
         color: black;
         position: relative;
-        left: 50px;
         font-family: Garamond, Georgia, serif;
         
     }
@@ -212,15 +211,22 @@ body {
         background-color: lightgrey;
         text-align: justify;
         padding: 25px;
-        margin-left: 25px;
+        margin-left: 50px;
         border-radius: 8%;
-        
     }
     .headerr{
         color: black;
         font-family: Garamond, Georgia, serif;
+        text-align: left;
+        
+    }
+   
+    .errordiv{
+        background-color: lightgrey;
         text-align: justify;
-        letter-spacing: 0.2em;
+        padding: 25px;
+        margin-left: 50px;
+        border-radius: 8%;
     }
 
     #merch-info{

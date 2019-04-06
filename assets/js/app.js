@@ -35,13 +35,12 @@
     $("#genre-submit").click(function(event){
         event.preventDefault();
         $("#bit-modal").modal("hide"); 
-        audioElement.pause();
-        resetRecord();
     });
 
     //USER INFO FURBASE
     $("#genre-submit").on("click", function(){
         genre = $("#genre-input").val().trim();
+        genre = genre.toLowerCase();
         userName = $("#name-input").val().trim();
         console.log(`userName is ${userName}; genre is ${genre}`);
         database.ref("/vinylly").push({
@@ -117,8 +116,10 @@ database.ref("/vinylly").on("child_added", function(childSnapshot) {
             searchEventsInTown(artist)
 
             albumView(albumArt, recordArt);
-            resetRecord();
-
+            if (songStarted === true) {
+                resetRecord();
+            }
+            
         }
         console.log(foundSong);
         console.log("sup " + genreInput)                 
@@ -143,10 +144,10 @@ console.log(audioElement)
     var resetRecord = function() {
         $("#record-img").removeClass("record-spin");
         audioElement.pause();
+        songStarted = false;
         $("#record-img").css("visibility", "hidden");
         $("#needle-img").removeClass("needle-start"); 
         $("#needle-img").removeClass("needle-play"); 
-        songStarted = false;
     };
 
 
@@ -192,15 +193,22 @@ console.log(audioElement)
     $("#eject-dat").on("click", function (){
         audioElement.pause();
         songStarted = false;
+        $("#needle-img").removeClass("needle-start"); 
+        $("#needle-img").removeClass("needle-play"); 
         $("#album-img").css("display", "inline");
-        $("#album-img" ).animate({ "left": "+=600px" }, 2000);
+        $("#album-img" ).animate({ "left": "-=750px" }, 2000);
+        
         setTimeout(function() {
             resetRecord();
         },2100)
         setTimeout(function() {
-            $("#album-img" ).animate({ "left": "-=600px" }, 2000);
+            $("#album-img" ).animate({ "left": "+=750px" }, 2000);
         },3000)
+        setTimeout(function() {
+            genreInput = "";
+        }, 3100)
     });
+
 
     //TOGGLE ALBUM RECORD
     var albumView = function(albumArt, recordArt) {
@@ -221,16 +229,19 @@ console.log(audioElement)
         }, 1400);
 
         $("#album-img").click(function(){
-            $("#album-img" ).animate({ "left": "-=600px" }, 2000);
-            albumReset = false;
-            $("#record-img").addClass("hvr-grow-record");
-            setTimeout(function() {
-                $("#record-img").addClass("hvr-shrink-record");
-                $("#record-img").removeClass("hvr-grow-record");
-                $("#player-img").css("opacity", "1");
-                $("#needle-img").css("opacity", "1");
-            }, 3000) 
-            albumInfo();
+            if (songStarted === false) {
+                if (albumReset === true) {
+                    $("#album-img" ).animate({ "left": "+=750px" }, 2000);
+                    albumReset = false;
+                }
+                $("#record-img").addClass("hvr-grow-record");
+                setTimeout(function() {
+                    $("#record-img").addClass("hvr-shrink-record");
+                    $("#record-img").removeClass("hvr-grow-record");
+                    $("#player-img").css("opacity", "1");
+                    $("#needle-img").css("opacity", "1");
+                }, 3000) 
+            }
         });
     };
     

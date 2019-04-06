@@ -102,7 +102,6 @@ database.ref("/vinylly").on("child_added", function(childSnapshot) {
             return song.genre === genreInput;
         });
 
-<<<<<<< HEAD
         if(foundSong) {
             audioLink = foundSong.mp3Audio;
             audioElement = document.createElement("audio");
@@ -130,156 +129,6 @@ database.ref("/vinylly").on("child_added", function(childSnapshot) {
         $("#bit-modal").modal("show"); 
     }  
 });
-=======
-    ////SONG INFORMATION////
-    var music = {
-        pop: {
-            songName: "Talk",
-            artist: "Khalid",
-            album: "Free Spirit",
-            year: "2019",
-            length: "00:03:18",
-            mp3Audio: "assets/audio/Khalid-Talk.mp3",
-            albumArt: "assets/images/albums/khalid.jpg",
-            recordArt: "assets/images/records/smithRecord.png",
-        },
-        soul: {
-            songName: "Walk On By",
-            artist: "Isaac Hayes",
-            album: "Hot Buttered Soul",
-            year: "1969",
-            length: "00:04:34",
-            mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
-            albumArt: "assets/images/albums/hayes.jpg",
-            recordArt: "assets/images/records/hayesRecord.png",
-        },
-        country: {
-            songName: "Check Yes or No",
-            artist: "George Strait",
-            album: "Strait Out of the Box",
-            year: "1995",
-            length: "00:03:20",
-            mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
-            albumArt: "assets/images/albums/strait.jpg",
-            recordArt: "assets/images/records/straitRecord.png",
-        },
-
-        rock:{
-            songName:"For What's it Worth",
-            artist: "Buffalo Springfield",
-            album : "Buffalo Springfield",
-            year: "1966",
-            length: "00:02:40",
-            mp3Audio:"assets/audio/Buffalo Springfield.mp3",
-            albumArt:"assets/images/albums/Buffalo-Springfield.jpg",
-
-        },
-        blues:{
-            songName:"The Thrill is Gone",
-            artist: "B.B. King",
-            album:"Completely Well",
-            year:"1969",
-            length:"00:05:29",
-            mp3Audio:"assets/audio/The-Thrill-is-Gone.mp3",
-            albumArt:"assets/images/albums/B-B-King.jpg",
-        },
-        rap:{
-            songName:"C.R.E.A.M",
-            artist: "Wu-Tang Clan",
-            album:"Enter the Wu-Tang",
-            year:"1993",
-            length:"00:04:01",
-            mp3Audio:"assets/audio/cream.mp3",
-            albumArt:"assets/images/albums/cream.jpg",
-        },
-        hip_hop:{
-            songName:"Electric Relaxation",
-            artist: "A Tribe Called Quest",
-            album:"Midnight Marauders",
-            year:"1993",
-            length: "00:03:46",
-            mp3Audio:"assets/audio/electric_relaxation.mp3",
-            albumArt:"assets/images/albums/tribe.jpg",
-        },
-        ragae:{
-            songName:"Legalize It",
-            artist:"Peter Tosh",
-            album:"Legalize It",
-            year:"1976",
-            length:"00:04:46",
-            mp3Audio:"assets/audio/Peter_tosh.mp3",
-            albumArt:"assets/images/albums/peter_tosh.jpg"
-        
-        },
-        psychedelic: {
-            songName: "Pow R. Toc H.",
-            artist: "Pink Floyd",
-            album: "The Piper at the Gates of Dawn",
-            year: "1967",
-            length: "00:04:26",
-            mp3Audio: "assets/audio/Pow R. Toc. H.mp3",
-            albumArt: "assets/images/albums/floyd.jpg",
-            recordArt: "assets/images/records/smithRecord.png",
-        },
-        metal: {
-            songName: "Blame It On God",
-            artist: "Deicide",
-            album: "Serpants of the Light",
-            year: "1997",
-            length: "00:02:44",
-            mp3Audio: "assets/audio/Deicide - Blame it on God(lyrics).mp3",
-            albumArt: "assets/images/albums/deicide.jpg",
-            recordArt: "assets/images/records/maroonRecord.png",
-        },
-        alternative: {
-            songName: "Hummer",
-            artist: "Smashing Pumpkins",
-            album: "Siamese Dream",
-            year: "1993",
-            length: "00:06:57",
-            mp3Audio: "assets/audio/The Smashing Pumpkins - Siamese Dream - Hummer.mp3",
-            albumArt: "assets/images/albums/pumpkins.jpg",
-            recordArt: "assets/images/records/candyRecord.png",
-        },
-        jazz: {
-            songName: "Easy Living",
-            artist: "Billie Holiday",
-            album: "Easy Living (Single)",
-            year: "1937",
-            length: "00:03:04",
-            mp3Audio: "assets/audio/#.mp3",
-            albumArt: "assets/images/albums/billie.jpg",
-            recordArt: "assets/images/records/purpleRecord.png",
-        },
-
-    };
-    var MillConversion = moment.duration().asMilliseconds();
-
-    var genreInput = "";
-    var audioElement = "";
-    var g = ""
-    var s = ""
-    var audioElement = "";
-    var songLength;
-
-    $("#genre-submit").on("click", function(){
-        genreInput = $('#inputGroupSelect04').val();
-        genreInput = $('#genre-input').val();
-        g = genreInput;
-        s = music[g].mp3Audio;
-        a = music[g].artist;
-        albumArt = music[g].albumArt;
-        recordArt = music[g].recordArt;
-        songLength = moment.duration(music[g].length).asMilliseconds();
-       
-        searchBandBio(a) 
-        searchEventsInTown(a)
-     
-        audioElement = document.createElement("audio");
-        audioElement.setAttribute("src", s)
-        console.log("this is: "  + g);
-        console.log("this is:" + s);
->>>>>>> bdcddeb947c7df6b6c5d22f55b6eb80020fc831d
 
     
 
@@ -414,7 +263,6 @@ console.log(audioElement)
             .then(function (response) {
                 
                 bitReady = true;
-<<<<<<< HEAD
                 fmArtist = $("<h1>").addClass("headerr")
                 fmArtist.text(response.artist.name)
                 
@@ -423,16 +271,6 @@ console.log(audioElement)
                 fmdiv.append(fmArtist, fmSumm)
                 $("#band-info").empty()
                 $("#band-info").append(fmdiv)
-=======
-                fmArtist = $("<h1>").addClass("headerr");
-                fmArtist.text(response.artist.name);
-                console.log(fmArtist);
-                fmSumm = response.artist.bio.summary;
-                fmdiv = $("<div>").addClass("band-bio-div");
-                fmdiv.append(fmArtist, fmSumm);
-                $("#band-info").empty();
-                $("#band-info").append(fmdiv);
->>>>>>> bdcddeb947c7df6b6c5d22f55b6eb80020fc831d
            
             });
     };
@@ -474,9 +312,13 @@ console.log(audioElement)
             console.log(response.length);
            if(response.length < 1) {
             $("#event-info").empty();
-            var error = $("<h1>").text("No Upcoming Events");
+            var errorDiv = $("<div>").addClass("errordiv")
+            var error = $("<h1>").text("No Upcoming Events")
+            error.addClass("headerr");
             console.log(error)
-            $("#event-info").append(error);
+            errorDiv.append(error)
+            
+            $("#event-info").append(errorDiv);
            }else{
 
            
@@ -505,17 +347,17 @@ console.log(audioElement)
             bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix);
             $("#event-info").empty();
             $("#event-info").append(bitdiv);
-<<<<<<< HEAD
            }
-=======
-            
->>>>>>> bdcddeb947c7df6b6c5d22f55b6eb80020fc831d
         }); 
     };
    
     //event button//
 
     $("#event-li").on("click", function() {
+
+        $('html, body').animate({
+            scrollTop: $("#event-info").offset().top
+        }, 500);
         if (bitReady) {
             console.log("bit ready!")
             searchEventsInTown(artist)
@@ -530,6 +372,9 @@ console.log(audioElement)
 
 //bio button//
 $("#bio-li").on("click", function() {
+    $('html, body').animate({
+        scrollTop: $("#band-info").offset().top
+    }, 500);
     if (bitReady) {
         console.log("bit ready!")
         searchBandBio(artist) 

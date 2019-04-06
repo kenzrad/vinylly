@@ -277,7 +277,7 @@ console.log(audioElement)
 // /last fm api
     var searchBandBio = function (bitArtist) {
         // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
-        var queryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + bitArtist + "&api_key=0360dba723cbbda37ff3c4ad152aaa0b&format=json";
+        var queryURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + bitArtist + "&api_key=0360dba723cbbda37ff3c4ad152aaa0b&format=json";
         $.ajax({
             url: queryURL,
             method: "GET"

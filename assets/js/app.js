@@ -141,6 +141,10 @@ database.ref("/vinylly").on("child_added", function(childSnapshot) {
             if (songStarted === true) {
                 resetRecord();
             }
+            if (albumReset === false) {
+                albumReset();
+                resetAlbum = true;
+            }
             
         }
         console.log(foundSong);
@@ -160,7 +164,7 @@ console.log(audioElement)
     var resetAlbum = function() {
         console.log ("RESET BITCHES")
         $("#album-img").css("display", "none");
-        $("#album-img" ).animate({ "left": "+=600px" }, 1);
+        $("#album-img" ).animate({ "left": "-=750px" }, 1);
     };
 
     var resetRecord = function() {
@@ -185,12 +189,12 @@ console.log(audioElement)
 
     $("#play-dat").on("click", function(){
         if (songStarted === false) {
-            audioElement.play();
             songStarted = true;
             $("#record-img").addClass("record-spin");
             $("#needle-img").addClass("needle-start")
             setTimeout(function() {
                 $("#needle-img").addClass("needle-play"); 
+                audioElement.play();
             }, 1000);
         }
     });
@@ -256,14 +260,14 @@ console.log(audioElement)
                     $("#album-img" ).animate({ "left": "+=750px" }, 2000);
                     albumReset = false;
                 }
-                $("#record-img").addClass("hvr-grow-record");
-                setTimeout(function() {
-                    $("#record-img").addClass("hvr-shrink-record");
-                    $("#record-img").removeClass("hvr-grow-record");
-                    $("#player-img").css("opacity", "1");
-                    $("#needle-img").css("opacity", "1");
-                }, 3000) 
-            }
+            };
+            $("#record-img").addClass("hvr-grow-record");
+            setTimeout(function() {
+                $("#record-img").addClass("hvr-shrink-record");
+                $("#record-img").removeClass("hvr-grow-record");
+                $("#player-img").css("opacity", "1");
+                $("#needle-img").css("opacity", "1");
+            }, 2500) 
         });
     };
     

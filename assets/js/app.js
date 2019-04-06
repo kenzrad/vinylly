@@ -361,7 +361,7 @@ console.log(audioElement)
             bitUpcoming_event = $("<h1>").addClass("headerr");
             bitUpcoming_event.text(bitArtist + "'s Upcoming Event");
             bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!");
-
+            bitTix.attr('target', '_blank');
             //location of event
             bitCity = response[0].venue.city;
             bitState = response[0].venue.region;

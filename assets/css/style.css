@@ -234,8 +234,9 @@ body {
 /*------------MODALS---------------*/
 
 
-#this-album-modal {
-
+.nope-img {
+    width: 600px;
+    height: auto;
 }
 
 

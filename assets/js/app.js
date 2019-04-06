@@ -281,16 +281,17 @@ console.log(audioElement)
 // /last fm api
     var searchBandBio = function (bitArtist) {
         // Querying the bandsintown api for the selected artist, the ?app_id parameter is required, but can equal anything
-        var queryURL = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + bitArtist + "&api_key=0360dba723cbbda37ff3c4ad152aaa0b&format=json";
+        var queryURL = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + bitArtist + "&api_key=0360dba723cbbda37ff3c4ad152aaa0b&format=json";
         $.ajax({
             url: queryURL,
             method: "GET"
         })
             .then(function (response) {
+                
                 bitReady = true;
                 fmArtist = $("<h1>").addClass("headerr")
                 fmArtist.text(response.artist.name)
-                console.log(fmArtist)
+                
                 fmSumm = response.artist.bio.summary
                 fmdiv = $("<div>").addClass("band-bio-div")
                 fmdiv.append(fmArtist, fmSumm)
@@ -332,9 +333,22 @@ console.log(audioElement)
     })
         .then(function (response) {
             bitReady = true;
-            bitdiv = $("<div>").addClass("events-in-town")
+            bitdiv = $("<div>").addClass("events-in-town");
             // Logging the entire object to console
-            console.log(response);
+            console.log(response.length);
+           if(response.length < 1) {
+            $("#event-info").empty();
+            var errorDiv = $("<div>").addClass("errordiv")
+            var error = $("<h1>").text("No Upcoming Events")
+            error.addClass("headerr");
+            console.log(error)
+            errorDiv.append(error)
+            
+            $("#event-info").append(errorDiv);
+           }else{
+
+           
+     
            
             bitEventDate = (response[0].datetime);
 
@@ -345,31 +359,35 @@ console.log(audioElement)
             convertedDate = moment(spliced, format);
             bitFinalDate = convertedDate.format("MM/DD/YY");
             bitVenue = $("<p>").text("Venue: " + response[0].venue.name);
-            bitDate= $("<p>").text("Date: " + bitFinalDate)
+            bitDate= $("<p>").text("Date: " + bitFinalDate);
 
                 //venue name, and link to tickets
             bitUpcoming_event = $("<h1>").addClass("headerr");
             bitUpcoming_event.text(bitArtist + "'s Upcoming Event");
             bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!");
-
+            bitTix.attr('target', '_blank');
             //location of event
-            bitCity = response[0].venue.city
-            bitState = response[0].venue.region
-            bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState)
-            bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix)
-            $("#event-info").empty()
-            $("#event-info").append(bitdiv)
-            
+            bitCity = response[0].venue.city;
+            bitState = response[0].venue.region;
+            bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState);
+            bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix);
+            $("#event-info").empty();
+            $("#event-info").append(bitdiv);
+           }
         }); 
     };
    
     //event button//
 
     $("#event-li").on("click", function() {
+
+        $('html, body').animate({
+            scrollTop: $("#event-info").offset().top
+        }, 500);
         if (bitReady) {
             console.log("bit ready!")
-            $("#event-info").empty()
-            $("#event-info").append(bitdiv)
+            searchEventsInTown(artist)
+            
         }
         else {
             $("#bit-modal").modal("show");  
@@ -380,10 +398,12 @@ console.log(audioElement)
 
 //bio button//
 $("#bio-li").on("click", function() {
+    $('html, body').animate({
+        scrollTop: $("#band-info").offset().top
+    }, 500);
     if (bitReady) {
         console.log("bit ready!")
-        $("#band-info").empty()
-        $("#band-info").append(fmdiv)
+        searchBandBio(artist) 
     }
     else  {
         $("#bit-modal").modal("show"); 

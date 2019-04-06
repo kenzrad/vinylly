@@ -35,6 +35,8 @@
     $("#genre-submit").click(function(event){
         event.preventDefault();
         $("#bit-modal").modal("hide"); 
+        audioElement.pause();
+        resetRecord();
     });
 
     //USER INFO FURBASE
@@ -70,8 +72,18 @@ function Song(song, artist, album, genre, year, length, recordArt, albumArt, mp3
 
 
 var songs = [];
-songs.push(new Song('Talk', 'Khalid', 'Free Spirit', 'pop', '2019', '3:18', 'assets/images/records/smithRecord.png', 'assets/images/albums/khalid.jpg', 'assets/audio/Khalid-Talk.mp3'));
-songs.push(new Song('Talk', 'Randy Travis', 'Free Spirit', 'country', '2019', '3:18', 'x', 'x', 'assets/audio/Khalid-Talk.mp3'));
+    songs.push(new Song('Talk', 'Khalid', 'Free Spirit', 'pop', '2019', '3:18', 'assets/images/records/smithRecord.png', 'assets/images/albums/khalid.jpg', 'assets/audio/Khalid-Talk.mp3'));
+    songs.push(new Song('Walk On By', 'Isaac Hayes', 'Hot Buttered Soul', 'soul', '1969', '00:04:34', 'assets/images/records/hayesRecord.png', 'assets/images/albums/hayes.jpg', 'assets/audio/Isaac Hayes Walk On By (HQ).mp3'));
+    songs.push(new Song('Check Yes or No', 'George Strait', 'Strait Out of the Box', 'country', '1995', '00:03:20', 'assets/images/records/straitRecord.png', 'assets/images/albums/strait.jpg', 'assets/audio/Check yes or no (George Strait) lyrics.mp3'));
+    songs.push(new Song("For What's it Worth", 'Buffalo Springfield', 'Buffalo Springfield', 'rock', '1966', '00:02:40', 'assets/images/records/pinkRecord.png', 'assets/images/albums/Buffalo-Springfield.jpg', 'assets/audio/Buffalo Springfield.mp3'));
+    songs.push(new Song("The Thrill is Gone", 'B.B. King', 'Completely Well', 'blues', '1969', '00:05:29', 'assets/images/records/moodyRecord.png','assets/images/albums/B-B-King.jpg', 'assets/audio/The-Thrill-is-Gone.mp3'));
+    songs.push(new Song("C.R.E.A.M", 'Wu-Tang Clan', 'Enter the Wu-Tang', 'rap', '1993', '00:04:01', 'assets/images/records/tyedyeRecord.png', 'assets/images/albums/cream.jpg', 'assets/audio/cream.mp3'));
+    songs.push(new Song("Electric Relaxation", 'A Tribe Called Quest', 'Midnight Marauders', 'hip-hop', '1993', '00:03:46', 'assets/images/records/xmasRecord.png', 'assets/images/albums/tribe.jpg', 'assets/audio/electric_relaxation.mp3'));
+    songs.push(new Song("Pow R. Toc H.", 'Pink Floyd', 'The Piper at the Gates of Dawn', 'psychedelic', '1967', '00:04:26', 'assets/images/records/smithRecord.png', 'assets/images/albums/floyd.jpg', 'assets/audio/Pow R. Toc. H.mp3'));
+    songs.push(new Song("Blame It On God", 'Deicide', 'Serpants of the Light', 'metal', '1997', '00:02:44', 'assets/images/records/maroonRecord.png', 'assets/images/albums/deicide.jpg', 'assets/audio/Deicide - Blame it on God(lyrics).mp3'));
+    songs.push(new Song("Hummer", 'Smashing Pumpkins', 'Siamese Dream', 'alternative', '1993', '00:06:57', 'assets/images/records/candyRecord.png', 'assets/images/albums/pumpkins.jpg', 'assets/audio/The Smashing Pumpkins - Siamese Dream - Hummer.mp3'));
+    songs.push(new Song("Easy Living", 'Billie Holiday', 'Easy Living (Single)', 'jazz', '1937', '00:03:04', 'assets/images/records/purpleRecord.png', 'assets/images/albums/billie.jpg', 'assets/audio/#.mp3')
+);
 
 var genreInput = "";
 var audioLink = "";
@@ -106,6 +118,7 @@ database.ref("/vinylly").on("child_added", function(childSnapshot) {
 
             albumView(albumArt, recordArt);
             resetRecord();
+
         }
         console.log(foundSong);
         console.log("sup " + genreInput)                 
@@ -120,154 +133,6 @@ database.ref("/vinylly").on("child_added", function(childSnapshot) {
 
 console.log(audioElement)
 
- 
-
-
-    ////SONG INFORMATION////
-    // var music = {
-    //     pop: {
-    //         songName: "Talk",
-    //         artist: "Khalid",
-    //         album: "Free Spirit",
-    //         year: "2019",
-    //         length: "00:03:18",
-    //         mp3Audio: "assets/audio/Khalid-Talk.mp3",
-    //         albumArt: "assets/images/albums/khalid.jpg",
-    //         recordArt: "assets/images/records/smithRecord.png",
-    //     },
-    //     soul: {
-    //         songName: "Walk On By",
-    //         artist: "Isaac Hayes",
-    //         album: "Hot Buttered Soul",
-    //         year: "1969",
-    //         length: "00:04:34",
-    //         mp3Audio: "assets/audio/Isaac Hayes Walk On By (HQ).mp3",
-    //         albumArt: "assets/images/albums/hayes.jpg",
-    //         recordArt: "assets/images/records/hayesRecord.png",
-    //     },
-    //     country: {
-    //         songName: "Check Yes or No",
-    //         artist: "George Strait",
-    //         album: "Strait Out of the Box",
-    //         year: "1995",
-    //         length: "00:03:20",
-    //         mp3Audio: "assets/audio/Check yes or no (George Strait) lyrics.mp3",
-    //         albumArt: "assets/images/albums/strait.jpg",
-    //         recordArt: "assets/images/records/straitRecord.png",
-    //     },
-
-    //     rock:{
-    //         songName:"For What's it Worth",
-    //         artist: "Buffalo Springfield",
-    //         album : "Buffalo Springfield",
-    //         year: "1966",
-    //         length: "00:02:40",
-    //         mp3Audio:"assets/audio/Buffalo Springfield.mp3",
-    //         albumArt:"assets/images/album/Buffalo-Springfield.jpg",
-    //         recordArt:"assets/images/records/pinkRecord.png"
-
-    //     },
-    //     blues:{
-    //         songName:"The Thrill is Gone",
-    //         artist: "B.B. King",
-    //         album:"Completely Well",
-    //         year:"1969",
-    //         length:"00:05:29",
-    //         mp3Audio:"assets/audio/The-Thrill-is-Gone.mp3",
-    //         albumArt:"assets/images/album/B-B-King.jpg",
-    //         recordArt:"assets/images/records/moodyRecord.png"
-    //     },
-    //     rap:{
-    //         songName:"C.R.E.A.M",
-    //         artist: "Wu-Tang Clan",
-    //         album:"Enter the Wu-Tang",
-    //         year:"1993",
-    //         length:"00:04:01",
-    //         mp3Audio:"assets/audio/cream.mp3",
-    //         albumArt:"assets/images/album/cream.jpg",
-    //         recordArt:"assets/images/records/tyedyeRecord.png"
-    //     },
-    //     hip_hop:{
-    //         songName:"Electric Relaxation",
-    //         artist: "A Tribe Called Quest",
-    //         album:"Midnight Marauders",
-    //         year:"1993",
-    //         length: "00:03:46",
-    //         mp3Audio:"assets/audio/electric_relaxation.mp3",
-    //         albumArt:"assets/images/albums/tribe.jpg",
-    //         recordArt:"assets/images/records/xmasRecord.png"
-    //     },
-    //     ragae:{
-            
-    //     },
-    //     psychedelic: {
-    //         songName: "Pow R. Toc H.",
-    //         artist: "Pink Floyd",
-    //         album: "The Piper at the Gates of Dawn",
-    //         year: "1967",
-    //         length: "00:04:26",
-    //         mp3Audio: "assets/audio/Pow R. Toc. H.mp3",
-    //         albumArt: "assets/images/albums/floyd.jpg",
-    //         recordArt: "assets/images/records/smithRecord.png",
-    //     },
-    //     metal: {
-    //         songName: "Blame It On God",
-    //         artist: "Deicide",
-    //         album: "Serpants of the Light",
-    //         year: "1997",
-    //         length: "00:02:44",
-    //         mp3Audio: "assets/audio/Deicide - Blame it on God(lyrics).mp3",
-    //         albumArt: "assets/images/albums/deicide.jpg",
-    //         recordArt: "assets/images/records/maroonRecord.png",
-    //     },
-    //     alternative: {
-    //         songName: "Hummer",
-    //         artist: "Smashing Pumpkins",
-    //         album: "Siamese Dream",
-    //         year: "1993",
-    //         length: "00:06:57",
-    //         mp3Audio: "assets/audio/The Smashing Pumpkins - Siamese Dream - Hummer.mp3",
-    //         albumArt: "assets/images/albums/pumpkins.jpg",
-    //         recordArt: "assets/images/records/candyRecord.png",
-    //     },
-    //     jazz: {
-    //         songName: "Easy Living",
-    //         artist: "Billie Holiday",
-    //         album: "Easy Living (Single)",
-    //         year: "1937",
-    //         length: "00:03:04",
-    //         mp3Audio: "assets/audio/#.mp3",
-    //         albumArt: "assets/images/albums/billie.jpg",
-    //         recordArt: "assets/images/records/purpleRecord.png",
-    //     },
-
-    // };
-    // var MillConversion = moment.duration().asMilliseconds();
-
-   
-    // $("#genre-submit").on("click", function(){
-    //     genreInput = $('#inputGroupSelect04').val();
-    //     genreInput = $('#genre-input').val();
-    //     g = genreInput
-    //     s = music[g].mp3Audio;
-    //     a = music[g].artist;
-    //     albumArt = music[g].albumArt;
-    //     recordArt = music[g].recordArt;
-    //     songLength = moment.duration(music[g].length).asMilliseconds();
-       
-    //     searchBandBio(a) 
-    //     searchEventsInTown(a)
-     
-        
-
-        
-        
-    //     albumView(albumArt, recordArt);
-    //     resetRecord();
-    //     // resetRecord();
-    // });
-
-
     ////Audio Set-Up////
     var resetAlbum = function() {
         console.log ("RESET BITCHES")
@@ -277,9 +142,11 @@ console.log(audioElement)
 
     var resetRecord = function() {
         $("#record-img").removeClass("record-spin");
+        audioElement.pause();
         $("#record-img").css("visibility", "hidden");
         $("#needle-img").removeClass("needle-start"); 
         $("#needle-img").removeClass("needle-play"); 
+        songStarted = false;
     };
 
 

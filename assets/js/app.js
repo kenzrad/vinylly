@@ -24,8 +24,29 @@
 
 
     //USER INFO VAR
-    var userName
-    var genre
+    var userName;
+    var genre;
+    var age;
+
+    //AGE VALIDATION
+    $("#age-submit").click(function(event){
+        event.preventDefault();
+        age = $("#age-input").val();
+        if (age > 17) {
+            $("#age-modal").modal("hide"); 
+            $("#bit-modal").modal("show");
+        }
+        else {
+            $("body").html("");
+            var nope = $("<div>");
+            nope.addClass("text-center")
+            var nopeImg = $("<img>")
+            nopeImg.attr("src", "assets/images/nope.png");
+            nopeImg.addClass("nope-img");
+            nope.append(nopeImg);
+            $("body").append(nope);
+        }
+    });
 
     //USER INFO MODAL
     $(".header").click(function(){
@@ -52,6 +73,7 @@
         $("#genre-display").text(`${genre}`)
 
     });
+    
 
 ////////////////////
 /////AUDIOPHILE/////
@@ -81,7 +103,7 @@ var songs = [];
     songs.push(new Song("Pow R. Toc H.", 'Pink Floyd', 'The Piper at the Gates of Dawn', 'psychedelic', '1967', '00:04:26', 'assets/images/records/smithRecord.png', 'assets/images/albums/floyd.jpg', 'assets/audio/Pow R. Toc. H.mp3'));
     songs.push(new Song("Blame It On God", 'Deicide', 'Serpants of the Light', 'metal', '1997', '00:02:44', 'assets/images/records/maroonRecord.png', 'assets/images/albums/deicide.jpg', 'assets/audio/Deicide - Blame it on God(lyrics).mp3'));
     songs.push(new Song("Hummer", 'Smashing Pumpkins', 'Siamese Dream', 'alternative', '1993', '00:06:57', 'assets/images/records/candyRecord.png', 'assets/images/albums/pumpkins.jpg', 'assets/audio/The Smashing Pumpkins - Siamese Dream - Hummer.mp3'));
-    songs.push(new Song("Easy Living", 'Billie Holiday', 'Easy Living (Single)', 'jazz', '1937', '00:03:04', 'assets/images/records/purpleRecord.png', 'assets/images/albums/billie.jpg', 'assets/audio/#.mp3')
+    songs.push(new Song("Easy Living", 'Billie Holiday', 'Easy Living (Single)', 'jazz', '1937', '00:03:04', 'assets/images/records/purpleRecord.png', 'assets/images/albums/billie.jpg', 'assets/audio/Billie Holiday - Easy Living.mp3')
 );
 
 var genreInput = "";
@@ -366,6 +388,8 @@ $("#bio-li").on("click", function() {
     
 });
 
-$(document).ready($("#bit-modal").modal("show")); 
+
+$(document).ready($("#age-modal").modal({backdrop: 'static', keyboard: false})); 
+$(document).ready($("#age-modal").modal("show"));
 
 

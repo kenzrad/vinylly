@@ -250,10 +250,11 @@ console.log(audioElement)
             method: "GET"
         })
             .then(function (response) {
+                
                 bitReady = true;
                 fmArtist = $("<h1>").addClass("headerr")
                 fmArtist.text(response.artist.name)
-                console.log(fmArtist)
+                
                 fmSumm = response.artist.bio.summary
                 fmdiv = $("<div>").addClass("band-bio-div")
                 fmdiv.append(fmArtist, fmSumm)
@@ -295,9 +296,18 @@ console.log(audioElement)
     })
         .then(function (response) {
             bitReady = true;
-            bitdiv = $("<div>").addClass("events-in-town")
+            bitdiv = $("<div>").addClass("events-in-town");
             // Logging the entire object to console
-            console.log(response);
+            console.log(response.length);
+           if(response.length < 1) {
+            $("#event-info").empty();
+            var error = $("<h1>").text("No Upcoming Events");
+            console.log(error)
+            $("#event-info").append(error);
+           }else{
+
+           
+     
            
             bitEventDate = (response[0].datetime);
 
@@ -316,13 +326,13 @@ console.log(audioElement)
             bitTix = $("<a>").attr("href", response[0].url).text("GET TICKETS NOW!!");
 
             //location of event
-            bitCity = response[0].venue.city
-            bitState = response[0].venue.region
-            bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState)
-            bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix)
-            $("#event-info").empty()
-            $("#event-info").append(bitdiv)
-            
+            bitCity = response[0].venue.city;
+            bitState = response[0].venue.region;
+            bitLocation = $("<p>").text("Location: " +bitCity + ", " + bitState);
+            bitdiv.append(bitUpcoming_event, bitVenue, bitDate, bitLocation, bitTix);
+            $("#event-info").empty();
+            $("#event-info").append(bitdiv);
+           }
         }); 
     };
    
@@ -331,8 +341,8 @@ console.log(audioElement)
     $("#event-li").on("click", function() {
         if (bitReady) {
             console.log("bit ready!")
-            $("#event-info").empty()
-            $("#event-info").append(bitdiv)
+            searchEventsInTown(artist)
+            
         }
         else {
             $("#bit-modal").modal("show");  
@@ -345,8 +355,7 @@ console.log(audioElement)
 $("#bio-li").on("click", function() {
     if (bitReady) {
         console.log("bit ready!")
-        $("#band-info").empty()
-        $("#band-info").append(fmdiv)
+        searchBandBio(artist) 
     }
     else  {
         $("#bit-modal").modal("show"); 

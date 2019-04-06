@@ -197,7 +197,7 @@ body {
         padding: 25px;
         border-radius: 8%;
         margin-left: 50px;
-        link:
+        
 
     }
 
@@ -219,8 +219,8 @@ body {
     .headerr{
         color: black;
         font-family: Garamond, Georgia, serif;
-        text-align: justify;
-        letter-spacing: 0.2em;
+        text-align: left;
+        
     }
 
     #merch-info{

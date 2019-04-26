@@ -1,4 +1,4 @@
-![vinylly](/assets/images/vinylly.png)
+![vinylly](/assets/images/readMe/vinylly.png)
 
 ###  v i n y l l y  is an interactive digtal record player that visually enhances the musical listening experience with the vintage vibes of vinyl.
 

@@ -1,16 +1,42 @@
 ![vinylly_title](/assets/images/readMe/vinylly.png)
 
-##  v i n y l l y  is an interactive digtal record player that visually enhances the musical listening experience with the vintage vibes of vinyl.
+![vinylly_slide2](/assets/images/readMe/slide2.png)
 
 ##  Overview
 
-![vinylly_slide2](/assets/images/readMe/slide2.png)
+* v i n y l l y enables a user (age 18+, for now) to access a library of music organized by genre
 
-To listen music in vinylly, the user must verify their age (you must be 18+ to enter). Once validated, the user can enter their name (optional) and a genre of music. Currently, the library is limited to a few genres (as we have no incorporated the Spotify API yet). Current genres include: rock, psychedelic, rap, hip-hop, soul, jazz, country, and pop.
+* While listening to music, the user can read band biographies and browse events showcasing the band or artist currently playing
 
-![vinylly_slide3](/assets/images/readMe/slide3.png)
+* Life-like animations and graphics allow the user to tap into the nostalgic pleasures of vinyl (without having to deal with the perils of those fancy record player thingamajigs)
 
-CSS classes are dynamically manipulated to animate the record player and the album art (jQuery and CSS Hover libraries are used). Bands-in-Town and Last.FM APIs allow the user to view upcomming events and read more about the artist playing.
+* The record player is full-screen to make for an excellent backdrop to a party playlist
+
+## How It Works
+
+* Age verification is used to confirm a user is age 18+. If they are under age, they are politely denied access to the site
+
+![vinylly_nope](/assets/images/readMe/nope.png)
+
+* If they pass age validation, a user is then prompted for their name (which is optional) and a musical genre
+
+* Currently, the library is limited to a few genres (as we have no incorporated the Spotify API yet). Available genres include:
+    *  rock
+    *  psychedelic
+    *  rap
+    *  hip-hop
+    *  soul
+    *  jazz
+    *  country
+    *  pop
+    *  alternative
+
+* CSS classes are dynamically manipulated to animate the record player and the album art (jQuery and CSS Hover libraries are used). 
+
+*  Bands-in-Town and Last.FM APIs allow the user to view upcomming events and read more about the artist playing.
+
+*  The site is styled with CSS and Bootstrap. We used a reset.css file to fully customize our look!
+
 
 ##  On The Horizon
 

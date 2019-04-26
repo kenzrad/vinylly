@@ -1,8 +1,10 @@
 ![vinylly_title](/assets/images/readMe/vinylly.png)
 
-![vinylly_slide2](/assets/images/readMe/slide2.png)
 
 ##  Overview
+
+![vinylly_slide2](/assets/images/readMe/slide2.png)
+
 
 * v i n y l l y enables a user (age 18+, for now) to access a library of music organized by genre
 
@@ -42,7 +44,7 @@
 
 ![vinylly_slide4](/assets/images/readMe/slide4.png)
 
-This is the first generation of vinylly. There are plans to drastically improve the user experience by including a larger library (spotify API) and changing the log-in feature so that the user can directly log into their spotify account. Eventually, vinylly will allow the user to select from a variety of record player skins to customize their experience.
+This is the first generation of vinylly. There are plans to drastically improve the user experience by including a larger library (spotify API) and changing the log-in feature so that the user can directly log into their spotify account. 
 
 ## Contributions
 
